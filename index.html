@@ -370,6 +370,9 @@
   .code-win .bar2 span{margin-left:10px;font-family:'JetBrains Mono',monospace;font-size:0.72rem;color:var(--muted-dim)}
   .code-win pre{margin:0;padding:22px;font-family:'JetBrains Mono',monospace;font-size:0.82rem;line-height:1.7;overflow-x:auto}
   .code-win .k{color:#8b7bff}.code-win .f{color:#33d9c4}.code-win .s{color:#ff9d7a}.code-win .c{color:#5b6785}.code-win .v{color:#eef2fb}
+  .code-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:20px}
+  @media (max-width:900px){.code-grid{grid-template-columns:1fr}}
+  .code-grid .code-win pre{font-size:0.76rem;padding:18px}
 
   /* process */
   .process{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;position:relative}
@@ -784,6 +787,48 @@
         <span class="k">return</span> <span class="v">response</span>()-&gt;<span class="f">noContent</span>();
     }
 }</pre>
+    </div>
+
+    <div class="code-grid">
+      <div class="code-win">
+        <div class="bar2"><i></i><i></i><i></i><span>bulk_backfill.js</span></div>
+        <pre><span class="k">async function</span> <span class="f">backfillContacts</span>(<span class="v">records</span>) {
+  <span class="k">const</span> <span class="v">chunks</span> = <span class="f">chunk</span>(<span class="v">records</span>, <span class="v">100</span>);
+
+  <span class="k">for</span> (<span class="k">const</span> <span class="v">batch</span> <span class="k">of</span> <span class="v">chunks</span>) {
+    <span class="k">const</span> <span class="v">res</span> = <span class="k">await</span> <span class="v">hubspot</span>.<span class="f">batchUpsert</span>(<span class="v">batch</span>);
+
+    <span class="c">// respect HubSpot's rate limit headers, not a guess</span>
+    <span class="k">const</span> <span class="v">wait</span> = <span class="f">retryAfter</span>(<span class="v">res</span>.<span class="v">headers</span>) ?? <span class="v">150</span>;
+    <span class="k">await</span> <span class="f">sleep</span>(<span class="v">wait</span>);
+
+    <span class="k">if</span> (<span class="v">res</span>.<span class="v">status</span> === <span class="v">429</span>) {
+      <span class="k">await</span> <span class="f">sleep</span>(<span class="v">wait</span> * <span class="v">4</span>);
+      <span class="v">chunks</span>.<span class="f">unshift</span>(<span class="v">batch</span>); <span class="c">// retry this batch</span>
+    }
+  }
+}</pre>
+      </div>
+      <div class="code-win">
+        <div class="bar2"><i></i><i></i><i></i><span>hs_workflow_action.php</span></div>
+        <pre><span class="k">class</span> <span class="f">ScoreLeadAction</span>
+{
+    <span class="c">// custom-coded action, called by a HubSpot workflow</span>
+    <span class="k">public function</span> <span class="f">execute</span>(<span class="v">array</span> <span class="v">$context</span>): <span class="v">array</span>
+    {
+        <span class="v">$contact</span> = <span class="v">$context</span>[<span class="s">'object'</span>];
+
+        <span class="v">$score</span> = <span class="v">Scoring</span>::<span class="f">calculate</span>(
+            <span class="v">$contact</span>[<span class="s">'company_size'</span>],
+            <span class="v">$contact</span>[<span class="s">'engagement_events'</span>]
+        );
+
+        <span class="k">return</span> [
+            <span class="s">'outputFields'</span> =&gt; [<span class="s">'lead_score'</span> =&gt; <span class="v">$score</span>]
+        ];
+    }
+}</pre>
+      </div>
     </div>
   </div>
 </section>
