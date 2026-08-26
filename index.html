@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HubDevPro — Tameem Ahmad Shahzad, HubSpot Integration Developer</title>
-<meta name="description" content="Tameem Ahmad Shahzad (HubDevPro) — Senior software engineer building 30+ custom HubSpot integrations: Stripe, PayPal, Auth0, Chargify, Mindbody and Laravel backends, wired for production.">
-<meta property="og:title" content="HubDevPro — HubSpot Integration Developer">
+<title>HubDevPro – Tameem Ahmad Shahzad, HubSpot Integration Developer</title>
+<meta name="description" content="Tameem Ahmad Shahzad (HubDevPro) – Senior software engineer building 30+ custom HubSpot integrations: Stripe, PayPal, Auth0, Chargify, Mindbody and Laravel backends, wired for production.">
+<meta property="og:title" content="HubDevPro – HubSpot Integration Developer">
 <meta property="og:description" content="30+ custom HubSpot integrations shipped. Payments, auth, booking and subscription systems connected to HubSpot CRM/CMS with Laravel backends.">
 <meta property="og:image" content="https://hubdevpro.com/assets/gh-avatar.png">
 <meta property="og:url" content="https://hubdevpro.com/">
@@ -446,6 +446,14 @@
   <div class="pct" id="boot-pct">0%</div>
 </div>
 
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="hs-mark" viewBox="0 0 32 32">
+    <line x1="22" y1="10" x2="10" y2="22" stroke="currentColor" stroke-width="2.4"/>
+    <circle cx="23" cy="9" r="5" fill="currentColor"/>
+    <circle cx="9" cy="23" r="7.5" fill="none" stroke="currentColor" stroke-width="2.4"/>
+  </symbol>
+</svg>
+
 <canvas id="bg-canvas"></canvas>
 <div class="noise"></div>
 <div class="scanlines"></div>
@@ -458,7 +466,7 @@
 
 <nav>
   <div class="inner">
-    <div class="logo"><span class="dot"></span>Tameem Ahmad Shahzad<span class="mono" style="color:var(--muted-dim);margin-left:8px;font-size:0.72rem">/ hubdevpro</span></div>
+    <div class="logo"><svg class="icon" style="width:20px;height:20px;color:var(--orange)"><use href="#hs-mark"/></svg>Tameem Ahmad Shahzad<span class="mono" style="color:var(--muted-dim);margin-left:8px;font-size:0.72rem">/ hubdevpro</span></div>
     <div class="links">
       <a href="#about">About</a>
       <a href="#capabilities">Capabilities</a>
@@ -476,10 +484,10 @@
     <div>
       <div class="kicker"><span class="ping"></span>Available for integration work</div>
       <div class="mono" style="color:var(--muted-dim);font-size:0.82rem;letter-spacing:0.08em;margin-bottom:10px">TAMEEM AHMAD SHAHZAD</div>
-      <h1>I connect <span class="glitch-wrap"><span class="grad" data-text="HubSpot">HubSpot</span></span> to everything your business actually runs on.</h1>
+      <h1><svg class="icon" style="width:0.85em;height:0.85em;color:var(--orange);vertical-align:-0.05em;margin-right:0.05em"><use href="#hs-mark"/></svg>I connect <span class="glitch-wrap"><span class="grad" data-text="HubSpot">HubSpot</span></span> to everything your business actually runs on.</h1>
       <p class="tagline">
         Senior software engineer specializing in <b>HubSpot integrations</b>, <b>API architecture</b> and
-        <b>Laravel backends</b> — turning CRM into a fully connected operating system for payments,
+        <b>Laravel backends</b> – turning CRM into a fully connected operating system for payments,
         auth, booking and subscriptions.
       </p>
       <div class="term mono" id="term"><span id="term-text"></span><span class="cur"></span></div>
@@ -526,7 +534,7 @@
           integrations</b>, I've connected HubSpot to the payment, authentication, booking, and subscription
           platforms businesses actually run on: <b>Stripe, PayPal, Auth0, Chargify, Mindbody</b>, and other SaaS
           tools where native apps fall short. Using <b>Laravel</b> as the backend foundation, I build hybrid
-          architectures pairing HubSpot CRM + CMS with external systems &mdash; production systems built to
+          architectures pairing HubSpot CRM + CMS with external systems &ndash; production systems built to
           survive retries, rate limits, and real-world data consistency issues.
         </p>
         <div class="stats">
@@ -549,7 +557,7 @@
         <div class="c2"></div>
         <div class="cap-idx">CAP // 01</div>
         <h3>Payment &amp; subscription sync</h3>
-        <p>Stripe, PayPal and Chargify billing state mirrored into HubSpot deals and custom objects &mdash; invoices, dunning, upgrades and churn kept in sync as they happen.</p>
+        <p>Stripe, PayPal and Chargify billing state mirrored into HubSpot deals and custom objects &ndash; invoices, dunning, upgrades and churn kept in sync as they happen.</p>
         <div class="tags"><span>Stripe</span><span>PayPal</span><span>Chargify</span><span>Custom Objects</span></div>
         <div class="meta">SYNC: BI-DIRECTIONAL · MODE: REAL-TIME</div>
       </div>
@@ -593,7 +601,7 @@
         <div>
           <h3>Recurring billing bridge</h3>
           <div class="pf-row">
-            <div><div class="k">Problem</div><p>Stripe/Chargify subscription state lived in one system, deal stage and revenue reporting lived in another &mdash; sales had no live view of billing health.</p></div>
+            <div><div class="k">Problem</div><p>Stripe/Chargify subscription state lived in one system, deal stage and revenue reporting lived in another &ndash; sales had no live view of billing health.</p></div>
             <div><div class="k">Solution</div><p>Laravel webhook layer mirrors invoices, upgrades and churn into HubSpot deals and custom objects in real time, with retry queues for failed syncs.</p></div>
             <div><div class="k">Stack</div><p>Stripe · Chargify · Laravel queues · HubSpot custom objects</p></div>
           </div>
@@ -721,7 +729,7 @@
         </div>
         <div class="tag">Custom Code</div>
         <h4>Custom-coded workflow actions</h4>
-        <p>Server-side code actions inside HubSpot workflows for logic no native action can express &mdash; scoring, routing, external lookups.</p>
+        <p>Server-side code actions inside HubSpot workflows for logic no native action can express &ndash; scoring, routing, external lookups.</p>
       </div>
       <div class="pf-mini hud"><div class="c2"></div>
         <div class="banner">
@@ -779,7 +787,7 @@
         <span class="c">// 2. de-dupe on Stripe's event id (idempotency)</span>
         <span class="k">if</span> (<span class="v">ProcessedEvent</span>::<span class="f">seen</span>(<span class="v">$req</span>-&gt;<span class="v">event_id</span>)) <span class="k">return</span> <span class="v">response</span>()-&gt;<span class="f">noContent</span>();
 
-        <span class="c">// 3. queue it — HubSpot's API waits for no one</span>
+        <span class="c">// 3. queue it – HubSpot's API waits for no one</span>
         <span class="v">SyncToHubspot</span>::<span class="f">dispatch</span>(<span class="v">$req</span>-&gt;<span class="v">payload</span>)
             -&gt;<span class="f">onQueue</span>(<span class="s">'hubspot-sync'</span>)
             -&gt;<span class="f">backoff</span>([<span class="v">5</span>, <span class="v">30</span>, <span class="v">120</span>, <span class="v">600</span>]);
@@ -987,7 +995,7 @@
       <a href="https://www.linkedin.com/in/tameemahmad-shahzad-2022a8174" target="_blank" rel="noopener"><svg class="icon" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="7" y1="10" x2="7" y2="16"/><circle cx="7" cy="7" r="0.6" fill="currentColor"/><path d="M11 16v-6"/><path d="M11 11c0-1.5 1-2 2.2-2 1.6 0 2.8 1 2.8 3v4"/></svg>LinkedIn</a>
       <span><svg class="icon" viewBox="0 0 24 24"><path d="M12 21s-7-6.5-7-11a7 7 0 0 1 14 0c0 4.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.4"/></svg>Bahawalnagar, Punjab, Pakistan</span>
     </div>
-    <small>&copy; <span id="year"></span> Tameem Ahmad Shahzad — built with plain HTML, CSS &amp; canvas.</small>
+    <small>&copy; <span id="year"></span> Tameem Ahmad Shahzad – built with plain HTML, CSS &amp; canvas.</small>
   </div>
 </footer>
 
