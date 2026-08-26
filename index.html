@@ -24,11 +24,13 @@
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
+  body{cursor:none}
+  @media (hover:none){body{cursor:auto}}
   ::selection{background:var(--cyan);color:#04120f}
   ::-webkit-scrollbar{width:10px}
   ::-webkit-scrollbar-track{background:var(--bg)}
   ::-webkit-scrollbar-thumb{background:#1c2740;border-radius:8px}
-  ::-webkit-scrollbar-thumb:hover{background:#293created6}
+  ::-webkit-scrollbar-thumb:hover{background:#2c3a5c}
 
   body{
     font-family:'Space Grotesk',-apple-system,BlinkMacSystemFont,sans-serif;
@@ -120,8 +122,22 @@
   .btn.primary:hover{box-shadow:0 8px 30px rgba(255,122,89,0.4)}
   .btn.ghost{color:var(--text);background:rgba(255,255,255,0.03)}
   .btn.ghost:hover{border-color:var(--border-hi);box-shadow:0 8px 30px rgba(51,217,196,0.18)}
+  .btn.whatsapp{background:rgba(37,211,102,0.1);color:#25d366;border-color:rgba(37,211,102,0.4)}
+  .btn.whatsapp:hover{box-shadow:0 8px 30px rgba(37,211,102,0.3);border-color:#25d366}
 
   @keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+
+  /* ticker */
+  .ticker{
+    position:relative;z-index:1;border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+    overflow:hidden;padding:16px 0;background:rgba(255,255,255,0.015);
+  }
+  .ticker-track{display:flex;gap:56px;width:max-content;animation:scroll-left 26s linear infinite}
+  .ticker-track span{
+    font-family:'JetBrains Mono',monospace;font-size:0.78rem;letter-spacing:0.12em;color:var(--muted-dim);
+    white-space:nowrap;
+  }
+  @keyframes scroll-left{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
   /* hero diagram */
   .diagram{
@@ -172,7 +188,7 @@
   .timeline::before{content:"";position:absolute;left:5px;top:8px;bottom:8px;width:1px;background:linear-gradient(180deg,var(--cyan),transparent)}
   .job{position:relative;margin-bottom:32px;border:1px solid var(--border);border-radius:16px;padding:26px;background:var(--card);transition:border-color .2s, background .2s}
   .job:hover{border-color:var(--border-hi);background:var(--card-hover)}
-  .job::before{
+  .job .dot-marker{
     content:"";position:absolute;left:-32px;top:30px;width:11px;height:11px;border-radius:50%;
     background:var(--bg);border:2px solid var(--cyan);box-shadow:0 0 12px rgba(51,217,196,0.6)
   }
@@ -214,12 +230,86 @@
   footer .contact-links a{text-decoration:none;color:var(--muted);transition:color .15s}
   footer .contact-links a:hover{color:var(--cyan)}
   footer small{display:block;color:var(--muted-dim);font-size:0.8rem}
+
+  /* ==== robotic / HUD layer ==== */
+  .scanlines{
+    position:fixed;inset:0;z-index:40;pointer-events:none;
+    background:repeating-linear-gradient(0deg, rgba(255,255,255,0.025) 0px, rgba(255,255,255,0.025) 1px, transparent 1px, transparent 3px);
+    mix-blend-mode:overlay;
+  }
+  .scan-sweep{
+    position:fixed;left:0;right:0;height:140px;z-index:41;pointer-events:none;
+    background:linear-gradient(180deg, transparent, rgba(51,217,196,0.05), transparent);
+    animation:sweep-down 7s linear infinite;
+  }
+  @keyframes sweep-down{from{top:-140px}to{top:100vh}}
+
+  .cursor-dot, .cursor-ring{position:fixed;top:0;left:0;pointer-events:none;z-index:9999;border-radius:50%;transform:translate(-50%,-50%)}
+  .cursor-dot{width:5px;height:5px;background:var(--cyan);box-shadow:0 0 8px var(--cyan)}
+  .cursor-ring{
+    width:30px;height:30px;border:1px solid rgba(51,217,196,0.55);
+    transition:width .18s ease,height .18s ease,border-color .18s ease,transform .05s linear;
+  }
+  .cursor-ring::before, .cursor-ring::after{content:"";position:absolute;background:var(--cyan)}
+  .cursor-ring::before{top:50%;left:-6px;width:4px;height:1px;transform:translateY(-50%)}
+  .cursor-ring::after{top:50%;right:-6px;width:4px;height:1px;transform:translateY(-50%)}
+  body.press .cursor-ring{width:22px;height:22px;border-color:var(--orange)}
+  @media (hover:none){.cursor-dot,.cursor-ring,.scanlines,.scan-sweep{display:none}}
+
+  .hud{position:relative}
+  .hud::before,.hud::after,.hud .c2::before,.hud .c2::after{content:"";position:absolute;width:14px;height:14px;border:1.5px solid rgba(51,217,196,0.55);pointer-events:none}
+  .hud::before{top:-1px;left:-1px;border-right:none;border-bottom:none}
+  .hud::after{top:-1px;right:-1px;border-left:none;border-bottom:none}
+  .hud .c2::before{bottom:-1px;left:-1px;border-right:none;border-top:none;top:auto}
+  .hud .c2::after{bottom:-1px;right:-1px;border-left:none;border-top:none;top:auto}
+
+  .glitch-wrap{position:relative;display:inline-block}
+  .glitch-wrap .grad{position:relative;display:inline-block}
+  .glitch-wrap .grad::before,.glitch-wrap .grad::after{
+    content:attr(data-text);position:absolute;left:0;top:0;width:100%;overflow:hidden;
+    background:linear-gradient(100deg,var(--cyan) 10%,var(--violet) 55%,var(--orange) 95%);
+    -webkit-background-clip:text;background-clip:text;color:transparent;opacity:0;
+  }
+  .glitch-wrap:hover .grad::before{opacity:0.7;animation:glitch-1 .35s steps(2) infinite;color:var(--cyan);-webkit-text-fill-color:var(--cyan)}
+  .glitch-wrap:hover .grad::after{opacity:0.7;animation:glitch-2 .35s steps(2) infinite;color:var(--orange);-webkit-text-fill-color:var(--orange)}
+  @keyframes glitch-1{0%{transform:translate(0,0)}30%{transform:translate(-2px,1px)}60%{transform:translate(2px,-1px)}100%{transform:translate(0,0)}}
+  @keyframes glitch-2{0%{transform:translate(0,0)}30%{transform:translate(2px,-1px)}60%{transform:translate(-2px,1px)}100%{transform:translate(0,0)}}
+
+  .term{
+    font-family:'JetBrains Mono',monospace;font-size:0.82rem;color:var(--cyan);
+    margin-top:22px;min-height:1.4em;display:flex;align-items:center;gap:2px;
+    animation:fadeUp .7s ease .18s both;
+  }
+  .term .cur{display:inline-block;width:7px;height:14px;background:var(--cyan);margin-left:2px;animation:blink-cursor 1s step-end infinite}
+  @keyframes blink-cursor{50%{opacity:0}}
+
+  .radar{
+    position:absolute;inset:22px;border-radius:12px;pointer-events:none;overflow:hidden;
+  }
+  .radar::before{
+    content:"";position:absolute;inset:0;
+    background:conic-gradient(from 0deg, rgba(51,217,196,0.16), transparent 30%);
+    animation:spin 5s linear infinite;
+  }
+  @keyframes spin{to{transform:rotate(360deg)}}
+
+  .id-tag{
+    position:absolute;top:16px;right:20px;font-family:'JetBrains Mono',monospace;font-size:0.6rem;
+    color:var(--muted-dim);letter-spacing:0.1em;text-align:right;line-height:1.5;
+  }
+  .id-tag b{color:var(--cyan)}
+
+  .btn{clip-path:polygon(10px 0,100% 0,100% calc(100% - 10px),calc(100% - 10px) 100%,0 100%,0 10px)}
 </style>
 </head>
 <body>
 
 <canvas id="bg-canvas"></canvas>
 <div class="noise"></div>
+<div class="scanlines"></div>
+<div class="scan-sweep"></div>
+<div class="cursor-ring" id="cursor-ring"></div>
+<div class="cursor-dot" id="cursor-dot"></div>
 <div class="glow-orb orb-1"></div>
 <div class="glow-orb orb-2"></div>
 <div class="glow-orb orb-3"></div>
@@ -241,24 +331,38 @@
   <div class="wrap hero-grid">
     <div>
       <div class="kicker"><span class="ping"></span>Available for integration work</div>
-      <h1>I connect <span class="grad">HubSpot</span> to everything your business actually runs on.</h1>
+      <h1>I connect <span class="glitch-wrap"><span class="grad" data-text="HubSpot">HubSpot</span></span> to everything your business actually runs on.</h1>
       <p class="tagline">
         Senior software engineer specializing in <b>HubSpot integrations</b>, <b>API architecture</b> and
         <b>Laravel backends</b> — turning CRM into a fully connected operating system for payments,
         auth, booking and subscriptions.
       </p>
+      <div class="term mono" id="term"><span id="term-text"></span><span class="cur"></span></div>
       <div class="cta">
-        <a class="btn primary" href="mailto:Tameemahmadshahzad@gmail.com">Email me →</a>
+        <a class="btn primary" href="mailto:tamimahmadiub@gmail.com">Email me →</a>
+        <a class="btn whatsapp" href="https://wa.me/923332732900" target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.1-1.6-.8-1.9-.9-.2-.1-.4-.1-.6.1-.2.3-.7.9-.8 1-.2.2-.3.2-.5.1-.3-.1-1.2-.4-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.1.2-.3.3-.4.1-.2 0-.4 0-.5C11.1 9.2 10.7 8 10.5 7.5c-.2-.4-.3-.4-.5-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.1s.9 2.5 1.1 2.7c.1.2 1.9 2.9 4.6 4 .6.3 1.1.4 1.5.6.6.2 1.2.2 1.6.1.5-.1 1.6-.6 1.8-1.3.2-.6.2-1.1.2-1.2-.1-.1-.2-.2-.5-.3zM12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.6 1.4 5.1L2 22l5.1-1.3C8.5 21.5 10.2 22 12 22c5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18.2c-1.6 0-3.2-.4-4.5-1.2l-.3-.2-3 .8.8-3-.2-.3C4 14.9 3.6 13.5 3.6 12 3.6 7.4 7.4 3.6 12 3.6S20.4 7.4 20.4 12 16.6 20.2 12 20.2z"/></svg>
+          WhatsApp
+        </a>
         <a class="btn ghost" href="https://www.linkedin.com/in/tameemahmad-shahzad-2022a8174" target="_blank" rel="noopener">LinkedIn</a>
-        <a class="btn ghost" href="tel:+923332732900">+92 333 2732900</a>
       </div>
     </div>
-    <div class="diagram">
+    <div class="diagram hud">
+      <div class="c2"></div>
       <div class="tag mono">integration_graph.live</div>
+      <div class="id-tag">NODE//HUBSPOT-CORE<br><b>STATUS: ONLINE</b></div>
+      <div class="radar"></div>
       <canvas id="hero-canvas"></canvas>
     </div>
   </div>
 </header>
+
+<div class="ticker">
+  <div class="ticker-track">
+    <span>STRIPE</span><span>PAYPAL</span><span>AUTH0</span><span>CHARGIFY</span><span>MINDBODY</span><span>LARAVEL</span><span>ZAPIER</span><span>N8N</span><span>HUBSPOT CRM</span><span>HUBSPOT CMS</span>
+    <span>STRIPE</span><span>PAYPAL</span><span>AUTH0</span><span>CHARGIFY</span><span>MINDBODY</span><span>LARAVEL</span><span>ZAPIER</span><span>N8N</span><span>HUBSPOT CRM</span><span>HUBSPOT CMS</span>
+  </div>
+</div>
 
 <section id="about">
   <div class="wrap reveal">
@@ -273,10 +377,10 @@
       survive retries, rate limits, and real-world data consistency issues.
     </p>
     <div class="stats">
-      <div class="stat"><div class="num">30+</div><div class="lbl">Custom HubSpot integrations shipped</div></div>
-      <div class="stat"><div class="num">5+</div><div class="lbl">Years in production engineering</div></div>
-      <div class="stat"><div class="num">8</div><div class="lbl">Platforms connected end-to-end</div></div>
-      <div class="stat"><div class="num">100%</div><div class="lbl">Production, zero demos</div></div>
+      <div class="stat hud"><div class="c2"></div><div class="num">30+</div><div class="lbl">Custom HubSpot integrations shipped</div></div>
+      <div class="stat hud"><div class="c2"></div><div class="num">5+</div><div class="lbl">Years in production engineering</div></div>
+      <div class="stat hud"><div class="c2"></div><div class="num">8</div><div class="lbl">Platforms connected end-to-end</div></div>
+      <div class="stat hud"><div class="c2"></div><div class="num">100%</div><div class="lbl">Production, zero demos</div></div>
     </div>
   </div>
 </section>
@@ -286,7 +390,8 @@
     <div class="eyebrow">02 · Stack</div>
     <h2>Skills &amp; tools</h2>
     <div class="skill-groups">
-      <div class="skill-group">
+      <div class="skill-group hud">
+        <div class="c2"></div>
         <h3><span class="ic"></span>HubSpot</h3>
         <ul>
           <li>CRM &amp; CMS architecture</li>
@@ -295,7 +400,8 @@
           <li>Serverless functions</li>
         </ul>
       </div>
-      <div class="skill-group">
+      <div class="skill-group hud">
+        <div class="c2"></div>
         <h3><span class="ic"></span>Integrations</h3>
         <ul>
           <li>REST API design</li>
@@ -304,7 +410,8 @@
           <li>Bi-directional data sync</li>
         </ul>
       </div>
-      <div class="skill-group">
+      <div class="skill-group hud">
+        <div class="c2"></div>
         <h3><span class="ic"></span>Backend</h3>
         <ul>
           <li>Laravel</li>
@@ -323,7 +430,9 @@
     <h2>Experience</h2>
     <div class="timeline">
 
-      <div class="job">
+      <div class="job hud">
+        <div class="c2"></div>
+        <span class="dot-marker"></span>
         <div class="row">
           <span class="role">Senior Software Engineer</span>
           <span class="dates mono">JUL 2021 → PRESENT · 5Y 2M</span>
@@ -341,7 +450,9 @@
         </ul>
       </div>
 
-      <div class="job">
+      <div class="job hud">
+        <div class="c2"></div>
+        <span class="dot-marker"></span>
         <div class="row">
           <span class="role">Laravel Developer</span>
           <span class="dates mono">DEC 2020 → JUL 2021 · 8M</span>
@@ -350,7 +461,9 @@
         <div class="place">Lahore District, Punjab, Pakistan</div>
       </div>
 
-      <div class="job">
+      <div class="job hud">
+        <div class="c2"></div>
+        <span class="dot-marker"></span>
         <div class="row">
           <span class="role">Laravel Developer</span>
           <span class="dates mono">APR 2018 → JAN 2020 · 1Y 10M</span>
@@ -381,11 +494,11 @@
     <div class="eyebrow">05 · Certifications</div>
     <h2>Certifications</h2>
     <div class="cert-grid">
-      <div class="cert"><span class="check">✓</span>AI Fluency for Small Businesses</div>
-      <div class="cert"><span class="check">✓</span>AI Fluency for Nonprofits</div>
-      <div class="cert"><span class="check">✓</span>AI Fluency for Students</div>
-      <div class="cert"><span class="check">✓</span>AI Fluency for Educators</div>
-      <div class="cert"><span class="check">✓</span>AI Capabilities and Limitations</div>
+      <div class="cert hud"><div class="c2"></div><span class="check">✓</span>AI Fluency for Small Businesses</div>
+      <div class="cert hud"><div class="c2"></div><span class="check">✓</span>AI Fluency for Nonprofits</div>
+      <div class="cert hud"><div class="c2"></div><span class="check">✓</span>AI Fluency for Students</div>
+      <div class="cert hud"><div class="c2"></div><span class="check">✓</span>AI Fluency for Educators</div>
+      <div class="cert hud"><div class="c2"></div><span class="check">✓</span>AI Capabilities and Limitations</div>
     </div>
   </div>
 </section>
@@ -396,12 +509,16 @@
     <h2>Let's connect your stack.</h2>
     <p class="lead">If your business has outgrown native integrations and needs HubSpot to work seamlessly with your existing tools, let's talk.</p>
     <div class="cta">
-      <a class="btn primary" href="mailto:Tameemahmadshahzad@gmail.com">Email me →</a>
+      <a class="btn primary" href="mailto:tamimahmadiub@gmail.com">Email me →</a>
+      <a class="btn whatsapp" href="https://wa.me/923332732900" target="_blank" rel="noopener">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.1-1.6-.8-1.9-.9-.2-.1-.4-.1-.6.1-.2.3-.7.9-.8 1-.2.2-.3.2-.5.1-.3-.1-1.2-.4-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.1.2-.3.3-.4.1-.2 0-.4 0-.5C11.1 9.2 10.7 8 10.5 7.5c-.2-.4-.3-.4-.5-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.1s.9 2.5 1.1 2.7c.1.2 1.9 2.9 4.6 4 .6.3 1.1.4 1.5.6.6.2 1.2.2 1.6.1.5-.1 1.6-.6 1.8-1.3.2-.6.2-1.1.2-1.2-.1-.1-.2-.2-.5-.3zM12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.6 1.4 5.1L2 22l5.1-1.3C8.5 21.5 10.2 22 12 22c5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18.2c-1.6 0-3.2-.4-4.5-1.2l-.3-.2-3 .8.8-3-.2-.3C4 14.9 3.6 13.5 3.6 12 3.6 7.4 7.4 3.6 12 3.6S20.4 7.4 20.4 12 16.6 20.2 12 20.2z"/></svg>
+        WhatsApp
+      </a>
       <a class="btn ghost" href="https://www.linkedin.com/in/tameemahmad-shahzad-2022a8174" target="_blank" rel="noopener">Connect on LinkedIn</a>
     </div>
     <div class="contact-links">
-      <a href="mailto:Tameemahmadshahzad@gmail.com">Tameemahmadshahzad@gmail.com</a>
-      <a href="tel:+923332732900">+92 333 2732900</a>
+      <a href="mailto:tamimahmadiub@gmail.com">tamimahmadiub@gmail.com</a>
+      <a href="https://wa.me/923332732900" target="_blank" rel="noopener">+92 333 2732900 (WhatsApp)</a>
       <a href="#">Bahawalnagar, Punjab, Pakistan</a>
     </div>
     <small>&copy; <span id="year"></span> Tameem Ahmad Shahzad — built with plain HTML, CSS &amp; canvas.</small>
@@ -417,6 +534,53 @@ var io = new IntersectionObserver(function(entries){
   entries.forEach(function(e){ if (e.isIntersecting) e.target.classList.add('in'); });
 }, {threshold:0.12});
 reveals.forEach(function(el){ io.observe(el); });
+
+/* custom cursor */
+(function(){
+  if (window.matchMedia('(hover:none)').matches) return;
+  var dot = document.getElementById('cursor-dot');
+  var ring = document.getElementById('cursor-ring');
+  var rx=0, ry=0, mx=0, my=0;
+  window.addEventListener('mousemove', function(e){
+    mx=e.clientX; my=e.clientY;
+    dot.style.left=mx+'px'; dot.style.top=my+'px';
+  });
+  document.addEventListener('mousedown', function(){ document.body.classList.add('press'); });
+  document.addEventListener('mouseup', function(){ document.body.classList.remove('press'); });
+  function loop(){
+    rx += (mx-rx)*0.18; ry += (my-ry)*0.18;
+    ring.style.left=rx+'px'; ring.style.top=ry+'px';
+    requestAnimationFrame(loop);
+  }
+  loop();
+})();
+
+/* terminal boot line */
+(function(){
+  var el = document.getElementById('term-text');
+  if (!el) return;
+  var lines = [
+    '> connecting HubSpot.CRM ... OK',
+    '> syncing Stripe / PayPal ... OK',
+    '> auth handshake via Auth0 ... OK',
+    '> laravel backend ... ONLINE'
+  ];
+  var li=0, ci=0, deleting=false;
+  function tick(){
+    var full = lines[li];
+    if (!deleting){
+      ci++;
+      el.textContent = full.slice(0,ci);
+      if (ci>=full.length){ deleting=true; setTimeout(tick,1400); return; }
+    } else {
+      ci--;
+      el.textContent = full.slice(0,ci);
+      if (ci<=0){ deleting=false; li=(li+1)%lines.length; }
+    }
+    setTimeout(tick, deleting?18:32);
+  }
+  tick();
+})();
 
 /* ambient background network */
 (function(){
