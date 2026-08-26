@@ -164,8 +164,33 @@
   .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease, transform .7s ease}
   .reveal.in{opacity:1;transform:translateY(0)}
 
-  #about p{color:var(--muted);max-width:70ch;font-size:1.06rem}
-  #about p b{color:var(--text);font-weight:600}
+  .about-grid{display:grid;grid-template-columns:260px 1fr;gap:44px;align-items:start}
+  @media (max-width:800px){.about-grid{grid-template-columns:1fr;justify-items:center;text-align:center}}
+  .portrait{
+    position:relative;width:260px;height:320px;border-radius:16px;overflow:hidden;
+    border:1px solid var(--border);background:var(--bg2);flex:0 0 auto;
+  }
+  .portrait img{width:100%;height:100%;object-fit:cover;filter:grayscale(0.15) contrast(1.05);display:block}
+  .portrait::after{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(180deg,rgba(51,217,196,0.08),transparent 30%,transparent 70%,rgba(5,7,13,0.65));
+  }
+  .portrait .scan{
+    position:absolute;left:0;right:0;height:60px;
+    background:linear-gradient(180deg,transparent,rgba(51,217,196,0.35),transparent);
+    animation:portrait-scan 3.4s ease-in-out infinite;
+  }
+  @keyframes portrait-scan{0%{top:-60px}50%{top:100%}100%{top:-60px}}
+  .portrait .id{
+    position:absolute;left:12px;bottom:12px;font-family:'JetBrains Mono',monospace;font-size:0.62rem;
+    color:var(--cyan);letter-spacing:0.08em;text-shadow:0 0 8px rgba(51,217,196,0.6);
+  }
+  .portrait .id b{display:block;color:var(--text);font-size:0.72rem;margin-bottom:2px}
+
+  #about .about-text p{color:var(--muted);max-width:70ch;font-size:1.06rem}
+  #about .about-text p b{color:var(--text);font-weight:600}
+
+  .icon{width:16px;height:16px;flex:0 0 16px;stroke:currentColor;fill:none;stroke-width:1.8}
 
   .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:44px}
   @media (max-width:700px){.stats{grid-template-columns:repeat(2,1fr)}}
@@ -179,7 +204,6 @@
   .skill-group{border:1px solid var(--border);border-radius:16px;padding:24px;background:var(--card);transition:border-color .2s, transform .2s, background .2s}
   .skill-group:hover{border-color:var(--border-hi);transform:translateY(-4px);background:var(--card-hover)}
   .skill-group h3{font-size:0.95rem;margin-bottom:16px;display:flex;align-items:center;gap:10px}
-  .skill-group h3 .ic{width:8px;height:8px;border-radius:2px;background:var(--cyan);transform:rotate(45deg)}
   .skill-group ul{list-style:none;display:flex;flex-direction:column;gap:10px}
   .skill-group li{color:var(--muted);font-size:0.9rem;font-family:'JetBrains Mono',monospace;display:flex;align-items:center;gap:8px}
   .skill-group li::before{content:"›";color:var(--orange)}
@@ -194,7 +218,7 @@
   }
   .job .row{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:4px}
   .job .role{font-weight:700;font-size:1.1rem}
-  .job .company{color:var(--orange);font-weight:600;font-size:0.95rem}
+  .job .company{color:var(--orange);font-weight:600;font-size:0.95rem;display:inline-flex;align-items:center;gap:8px}
   .job .dates{color:var(--muted-dim);font-size:0.8rem;font-family:'JetBrains Mono',monospace;white-space:nowrap}
   .job .place{color:var(--muted-dim);font-size:0.82rem;margin-bottom:14px}
   .job ul{margin-top:12px;padding-left:0;list-style:none;color:var(--muted);font-size:0.93rem;display:flex;flex-direction:column;gap:9px}
@@ -227,8 +251,9 @@
   footer .lead{color:var(--muted);max-width:50ch;margin:0 auto 34px}
   footer .cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:56px}
   footer .contact-links{display:flex;gap:22px;justify-content:center;flex-wrap:wrap;margin-bottom:24px;font-family:'JetBrains Mono',monospace;font-size:0.85rem}
-  footer .contact-links a{text-decoration:none;color:var(--muted);transition:color .15s}
+  footer .contact-links a{text-decoration:none;color:var(--muted);transition:color .15s;display:inline-flex;align-items:center;gap:7px}
   footer .contact-links a:hover{color:var(--cyan)}
+  footer .contact-links span{display:inline-flex;align-items:center;gap:7px;color:var(--muted-dim)}
   footer small{display:block;color:var(--muted-dim);font-size:0.8rem}
 
   /* ==== robotic / HUD layer ==== */
@@ -300,9 +325,65 @@
   .id-tag b{color:var(--cyan)}
 
   .btn{clip-path:polygon(10px 0,100% 0,100% calc(100% - 10px),calc(100% - 10px) 100%,0 100%,0 10px)}
+
+  /* boot overlay */
+  #boot{
+    position:fixed;inset:0;z-index:999;background:#05070d;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;
+    transition:opacity .5s ease, visibility .5s ease;
+  }
+  #boot.hide{opacity:0;visibility:hidden;pointer-events:none}
+  #boot .line{font-family:'JetBrains Mono',monospace;font-size:0.8rem;color:var(--cyan);letter-spacing:0.08em}
+  #boot .bar{width:240px;height:2px;background:rgba(255,255,255,0.08);overflow:hidden}
+  #boot .bar i{display:block;height:100%;width:0%;background:linear-gradient(90deg,var(--cyan),var(--orange))}
+  #boot .pct{font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:var(--muted-dim)}
+
+  /* capability cards */
+  .cap-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+  @media (max-width:800px){.cap-grid{grid-template-columns:1fr}}
+  .cap{border:1px solid var(--border);border-radius:16px;padding:26px;background:var(--card);position:relative;overflow:hidden;transition:border-color .2s, background .2s, transform .2s}
+  .cap:hover{border-color:var(--border-hi);background:var(--card-hover);transform:translateY(-4px)}
+  .cap .cap-idx{font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:var(--muted-dim);letter-spacing:0.1em}
+  .cap h3{font-size:1.05rem;margin:10px 0 8px}
+  .cap p{color:var(--muted);font-size:0.9rem;margin-bottom:16px}
+  .cap .tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+  .cap .tags span{font-family:'JetBrains Mono',monospace;font-size:0.68rem;color:var(--cyan);border:1px solid rgba(51,217,196,0.3);border-radius:999px;padding:3px 10px;background:rgba(51,217,196,0.05)}
+  .cap .meta{font-family:'JetBrains Mono',monospace;font-size:0.68rem;color:var(--muted-dim);letter-spacing:0.06em;border-top:1px dashed var(--border);padding-top:12px}
+
+  /* code terminal */
+  .code-win{border:1px solid var(--border);border-radius:14px;overflow:hidden;background:#080c16;box-shadow:0 30px 80px rgba(0,0,0,0.4)}
+  .code-win .bar2{display:flex;align-items:center;gap:8px;padding:12px 16px;background:rgba(255,255,255,0.03);border-bottom:1px solid var(--border)}
+  .code-win .bar2 i{width:10px;height:10px;border-radius:50%;display:inline-block}
+  .code-win .bar2 i:nth-child(1){background:#ff5f57}
+  .code-win .bar2 i:nth-child(2){background:#febc2e}
+  .code-win .bar2 i:nth-child(3){background:#28c840}
+  .code-win .bar2 span{margin-left:10px;font-family:'JetBrains Mono',monospace;font-size:0.72rem;color:var(--muted-dim)}
+  .code-win pre{margin:0;padding:22px;font-family:'JetBrains Mono',monospace;font-size:0.82rem;line-height:1.7;overflow-x:auto}
+  .code-win .k{color:#8b7bff}.code-win .f{color:#33d9c4}.code-win .s{color:#ff9d7a}.code-win .c{color:#5b6785}.code-win .v{color:#eef2fb}
+
+  /* process */
+  .process{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;position:relative}
+  @media (max-width:900px){.process{grid-template-columns:1fr;gap:24px}}
+  .process::before{content:"";position:absolute;top:17px;left:0;right:0;height:1px;background:var(--border)}
+  @media (max-width:900px){.process::before{display:none}}
+  .pstep{position:relative;padding-top:44px}
+  .pstep .n{
+    position:absolute;top:0;left:0;width:34px;height:34px;border-radius:50%;
+    background:var(--bg2);border:1px solid var(--border-hi);color:var(--cyan);
+    display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:0.85rem;font-weight:600;
+    box-shadow:0 0 16px rgba(51,217,196,0.25);
+  }
+  .pstep h4{font-size:0.95rem;margin-bottom:6px}
+  .pstep p{color:var(--muted);font-size:0.84rem}
 </style>
 </head>
 <body>
+
+<div id="boot">
+  <div class="line" id="boot-line">INITIALIZING SYSTEM...</div>
+  <div class="bar"><i id="boot-bar"></i></div>
+  <div class="pct" id="boot-pct">0%</div>
+</div>
 
 <canvas id="bg-canvas"></canvas>
 <div class="noise"></div>
@@ -319,9 +400,10 @@
     <div class="logo"><span class="dot"></span>Tameem<span class="mono" style="color:var(--muted-dim)">.dev</span></div>
     <div class="links">
       <a href="#about">About</a>
+      <a href="#capabilities">Capabilities</a>
+      <a href="#process">Process</a>
       <a href="#skills">Skills</a>
       <a href="#experience">Experience</a>
-      <a href="#certifications">Certifications</a>
       <a href="#contact">Contact</a>
     </div>
   </div>
@@ -368,19 +450,113 @@
   <div class="wrap reveal">
     <div class="eyebrow">01 · About</div>
     <h2>Not just a CRM. A connected system.</h2>
-    <p>
-      I help businesses turn HubSpot into a fully connected operating system. Over <b>30+ custom
-      integrations</b>, I've connected HubSpot to the payment, authentication, booking, and subscription
-      platforms businesses actually run on: <b>Stripe, PayPal, Auth0, Chargify, Mindbody</b>, and other SaaS
-      tools where native apps fall short. Using <b>Laravel</b> as the backend foundation, I build hybrid
-      architectures pairing HubSpot CRM + CMS with external systems &mdash; production systems built to
-      survive retries, rate limits, and real-world data consistency issues.
-    </p>
-    <div class="stats">
-      <div class="stat hud"><div class="c2"></div><div class="num">30+</div><div class="lbl">Custom HubSpot integrations shipped</div></div>
-      <div class="stat hud"><div class="c2"></div><div class="num">5+</div><div class="lbl">Years in production engineering</div></div>
-      <div class="stat hud"><div class="c2"></div><div class="num">8</div><div class="lbl">Platforms connected end-to-end</div></div>
-      <div class="stat hud"><div class="c2"></div><div class="num">100%</div><div class="lbl">Production, zero demos</div></div>
+    <div class="about-grid">
+      <div class="portrait hud">
+        <div class="c2"></div>
+        <img src="assets/profile.png" alt="Portrait of Tameem Ahmad Shahzad" loading="lazy">
+        <div class="scan"></div>
+        <div class="id"><b>T. A. SHAHZAD</b>ID // HS-DEV-01</div>
+      </div>
+      <div class="about-text">
+        <p>
+          I help businesses turn HubSpot into a fully connected operating system. Over <b>30+ custom
+          integrations</b>, I've connected HubSpot to the payment, authentication, booking, and subscription
+          platforms businesses actually run on: <b>Stripe, PayPal, Auth0, Chargify, Mindbody</b>, and other SaaS
+          tools where native apps fall short. Using <b>Laravel</b> as the backend foundation, I build hybrid
+          architectures pairing HubSpot CRM + CMS with external systems &mdash; production systems built to
+          survive retries, rate limits, and real-world data consistency issues.
+        </p>
+        <div class="stats">
+          <div class="stat hud"><div class="c2"></div><div class="num" data-target="30" data-suffix="+">0</div><div class="lbl">Custom HubSpot integrations shipped</div></div>
+          <div class="stat hud"><div class="c2"></div><div class="num" data-target="5" data-suffix="+">0</div><div class="lbl">Years in production engineering</div></div>
+          <div class="stat hud"><div class="c2"></div><div class="num" data-target="8" data-suffix="">0</div><div class="lbl">Platforms connected end-to-end</div></div>
+          <div class="stat hud"><div class="c2"></div><div class="num" data-target="100" data-suffix="%">0</div><div class="lbl">Production, zero demos</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="capabilities">
+  <div class="wrap reveal">
+    <div class="eyebrow">02 · Capabilities</div>
+    <h2>Systems I build</h2>
+    <div class="cap-grid">
+      <div class="cap hud">
+        <div class="c2"></div>
+        <div class="cap-idx">CAP // 01</div>
+        <h3>Payment &amp; subscription sync</h3>
+        <p>Stripe, PayPal and Chargify billing state mirrored into HubSpot deals and custom objects &mdash; invoices, dunning, upgrades and churn kept in sync as they happen.</p>
+        <div class="tags"><span>Stripe</span><span>PayPal</span><span>Chargify</span><span>Custom Objects</span></div>
+        <div class="meta">SYNC: BI-DIRECTIONAL · MODE: REAL-TIME</div>
+      </div>
+      <div class="cap hud">
+        <div class="c2"></div>
+        <div class="cap-idx">CAP // 02</div>
+        <h3>Identity &amp; auth bridges</h3>
+        <p>Auth0-backed login tied directly to HubSpot contact records, so account state, roles and permissions stay consistent between your app and your CRM.</p>
+        <div class="tags"><span>Auth0</span><span>SSO</span><span>Webhooks</span></div>
+        <div class="meta">SYNC: EVENT-DRIVEN · MODE: ASYNC</div>
+      </div>
+      <div class="cap hud">
+        <div class="c2"></div>
+        <div class="cap-idx">CAP // 03</div>
+        <h3>Booking &amp; scheduling engines</h3>
+        <p>Mindbody-style booking and session data synced with HubSpot timelines and workflows, so sales and support see the full customer journey in one place.</p>
+        <div class="tags"><span>Mindbody</span><span>Workflows</span><span>Timeline Events</span></div>
+        <div class="meta">SYNC: BI-DIRECTIONAL · MODE: REAL-TIME</div>
+      </div>
+      <div class="cap hud">
+        <div class="c2"></div>
+        <div class="cap-idx">CAP // 04</div>
+        <h3>Reliability layer</h3>
+        <p>The plumbing that keeps every sync correct under real traffic: retries with backoff, idempotency keys, webhook signature validation and rate-limit management.</p>
+        <div class="tags"><span>Retries</span><span>Idempotency</span><span>Rate Limits</span></div>
+        <div class="meta">FAILURE MODE: GRACEFUL · RECOVERY: AUTOMATIC</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="under-the-hood">
+  <div class="wrap reveal">
+    <div class="eyebrow">03 · Under the hood</div>
+    <h2>How a sync actually survives production</h2>
+    <div class="code-win">
+      <div class="bar2"><i></i><i></i><i></i><span>webhook_handler.php</span></div>
+      <pre><span class="k">class</span> <span class="f">StripeWebhookHandler</span>
+{
+    <span class="k">public function</span> <span class="f">handle</span>(<span class="v">Request</span> <span class="v">$req</span>)
+    {
+        <span class="c">// 1. verify the signature before trusting anything</span>
+        <span class="k">if</span> (!<span class="v">Signature</span>::<span class="f">verify</span>(<span class="v">$req</span>, <span class="v">config</span>(<span class="s">'stripe.secret'</span>)))
+            <span class="k">abort</span>(<span class="v">400</span>);
+
+        <span class="c">// 2. de-dupe on Stripe's event id (idempotency)</span>
+        <span class="k">if</span> (<span class="v">ProcessedEvent</span>::<span class="f">seen</span>(<span class="v">$req</span>-&gt;<span class="v">event_id</span>)) <span class="k">return</span> <span class="v">response</span>()-&gt;<span class="f">noContent</span>();
+
+        <span class="c">// 3. queue it — HubSpot's API waits for no one</span>
+        <span class="v">SyncToHubspot</span>::<span class="f">dispatch</span>(<span class="v">$req</span>-&gt;<span class="v">payload</span>)
+            -&gt;<span class="f">onQueue</span>(<span class="s">'hubspot-sync'</span>)
+            -&gt;<span class="f">backoff</span>([<span class="v">5</span>, <span class="v">30</span>, <span class="v">120</span>, <span class="v">600</span>]);
+
+        <span class="k">return</span> <span class="v">response</span>()-&gt;<span class="f">noContent</span>();
+    }
+}</pre>
+    </div>
+  </div>
+</section>
+
+<section id="process">
+  <div class="wrap reveal">
+    <div class="eyebrow">04 · Process</div>
+    <h2>How an engagement runs</h2>
+    <div class="process">
+      <div class="pstep"><div class="n">01</div><h4>Discover</h4><p>Map the systems you already run on and where HubSpot's native tools stop being enough.</p></div>
+      <div class="pstep"><div class="n">02</div><h4>Architect</h4><p>Design the data flow: what's the source of truth, what syncs where, and how failures get handled.</p></div>
+      <div class="pstep"><div class="n">03</div><h4>Build</h4><p>Ship the HubSpot side (objects, workflows, UI extensions) and the Laravel backend together.</p></div>
+      <div class="pstep"><div class="n">04</div><h4>Harden</h4><p>Add retries, idempotency, signature checks and monitoring so it survives real traffic, not just demos.</p></div>
+      <div class="pstep"><div class="n">05</div><h4>Ship</h4><p>Deploy, document, and hand over a system your team can actually maintain.</p></div>
     </div>
   </div>
 </section>
@@ -392,7 +568,7 @@
     <div class="skill-groups">
       <div class="skill-group hud">
         <div class="c2"></div>
-        <h3><span class="ic"></span>HubSpot</h3>
+        <h3><svg class="icon" style="color:var(--orange)" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><circle cx="19" cy="6" r="2.4"/><circle cx="19" cy="18" r="2.4"/><circle cx="5" cy="12" r="2.4"/><line x1="14.1" y1="10.5" x2="17" y2="7.5"/><line x1="14.1" y1="13.5" x2="17" y2="16.5"/><line x1="9" y1="12" x2="7.4" y2="12"/></svg>HubSpot</h3>
         <ul>
           <li>CRM &amp; CMS architecture</li>
           <li>Custom objects &amp; workflows</li>
@@ -402,7 +578,7 @@
       </div>
       <div class="skill-group hud">
         <div class="c2"></div>
-        <h3><span class="ic"></span>Integrations</h3>
+        <h3><svg class="icon" style="color:var(--cyan)" viewBox="0 0 24 24"><path d="M8 7H5a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h3"/><path d="M16 7h3a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2h-3"/><line x1="8" y1="12" x2="16" y2="12"/></svg>Integrations</h3>
         <ul>
           <li>REST API design</li>
           <li>Webhook architecture</li>
@@ -412,7 +588,7 @@
       </div>
       <div class="skill-group hud">
         <div class="c2"></div>
-        <h3><span class="ic"></span>Backend</h3>
+        <h3><svg class="icon" style="color:var(--violet)" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="6" rx="1.5"/><rect x="3" y="14" width="18" height="6" rx="1.5"/><line x1="7" y1="7" x2="7" y2="7"/><line x1="7" y1="17" x2="7" y2="17"/></svg>Backend</h3>
         <ul>
           <li>Laravel</li>
           <li>Stripe / PayPal</li>
@@ -437,7 +613,7 @@
           <span class="role">Senior Software Engineer</span>
           <span class="dates mono">JUL 2021 → PRESENT · 5Y 2M</span>
         </div>
-        <div class="company">Computan</div>
+        <div class="company"><svg class="icon" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>Computan</div>
         <ul>
           <li>Architected and shipped 30+ custom HubSpot integrations across diverse client stacks, owning each from requirements to production deployment</li>
           <li>Connected HubSpot to Stripe, PayPal, Auth0, Chargify, Mindbody, and other SaaS platforms where native apps fall short</li>
@@ -457,7 +633,7 @@
           <span class="role">Laravel Developer</span>
           <span class="dates mono">DEC 2020 → JUL 2021 · 8M</span>
         </div>
-        <div class="company">TechSwivel (Private) Limited</div>
+        <div class="company"><svg class="icon" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>TechSwivel (Private) Limited</div>
         <div class="place">Lahore District, Punjab, Pakistan</div>
       </div>
 
@@ -468,7 +644,7 @@
           <span class="role">Laravel Developer</span>
           <span class="dates mono">APR 2018 → JAN 2020 · 1Y 10M</span>
         </div>
-        <div class="company">Skp Software Technologies</div>
+        <div class="company"><svg class="icon" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>Skp Software Technologies</div>
         <div class="place">Lahore, Pakistan</div>
       </div>
 
@@ -481,9 +657,12 @@
     <div class="eyebrow">04 · Education</div>
     <h2>Education</h2>
     <div class="grid2">
-      <div class="card">
-        <h3>BSCS, Computer Engineering</h3>
-        <p>The Islamia University of Bahawalpur · 2014 &ndash; 2018</p>
+      <div class="card" style="display:flex;gap:16px;align-items:flex-start">
+        <svg class="icon" style="width:22px;height:22px;flex:0 0 22px;color:var(--cyan)" viewBox="0 0 24 24"><path d="M2 9l10-5 10 5-10 5-10-5z"/><path d="M6 11v5c0 1.5 2.7 3 6 3s6-1.5 6-3v-5"/><path d="M22 9v6"/></svg>
+        <div>
+          <h3>BSCS, Computer Engineering</h3>
+          <p>The Islamia University of Bahawalpur · 2014 &ndash; 2018</p>
+        </div>
       </div>
     </div>
   </div>
@@ -494,11 +673,11 @@
     <div class="eyebrow">05 · Certifications</div>
     <h2>Certifications</h2>
     <div class="cert-grid">
-      <div class="cert hud"><div class="c2"></div><span class="check">✓</span>AI Fluency for Small Businesses</div>
-      <div class="cert hud"><div class="c2"></div><span class="check">✓</span>AI Fluency for Nonprofits</div>
-      <div class="cert hud"><div class="c2"></div><span class="check">✓</span>AI Fluency for Students</div>
-      <div class="cert hud"><div class="c2"></div><span class="check">✓</span>AI Fluency for Educators</div>
-      <div class="cert hud"><div class="c2"></div><span class="check">✓</span>AI Capabilities and Limitations</div>
+      <div class="cert hud"><div class="c2"></div><span class="check"><svg class="icon" viewBox="0 0 24 24" style="width:13px;height:13px"><path d="M20 6L9 17l-5-5"/></svg></span>AI Fluency for Small Businesses</div>
+      <div class="cert hud"><div class="c2"></div><span class="check"><svg class="icon" viewBox="0 0 24 24" style="width:13px;height:13px"><path d="M20 6L9 17l-5-5"/></svg></span>AI Fluency for Nonprofits</div>
+      <div class="cert hud"><div class="c2"></div><span class="check"><svg class="icon" viewBox="0 0 24 24" style="width:13px;height:13px"><path d="M20 6L9 17l-5-5"/></svg></span>AI Fluency for Students</div>
+      <div class="cert hud"><div class="c2"></div><span class="check"><svg class="icon" viewBox="0 0 24 24" style="width:13px;height:13px"><path d="M20 6L9 17l-5-5"/></svg></span>AI Fluency for Educators</div>
+      <div class="cert hud"><div class="c2"></div><span class="check"><svg class="icon" viewBox="0 0 24 24" style="width:13px;height:13px"><path d="M20 6L9 17l-5-5"/></svg></span>AI Capabilities and Limitations</div>
     </div>
   </div>
 </section>
@@ -517,9 +696,10 @@
       <a class="btn ghost" href="https://www.linkedin.com/in/tameemahmad-shahzad-2022a8174" target="_blank" rel="noopener">Connect on LinkedIn</a>
     </div>
     <div class="contact-links">
-      <a href="mailto:tamimahmadiub@gmail.com">tamimahmadiub@gmail.com</a>
-      <a href="https://wa.me/923332732900" target="_blank" rel="noopener">+92 333 2732900 (WhatsApp)</a>
-      <a href="#">Bahawalnagar, Punjab, Pakistan</a>
+      <a href="mailto:tamimahmadiub@gmail.com"><svg class="icon" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>tamimahmadiub@gmail.com</a>
+      <a href="https://wa.me/923332732900" target="_blank" rel="noopener"><svg class="icon" viewBox="0 0 24 24"><path d="M17 7a8 8 0 1 0-13 9.4L3 21l4.8-1a8 8 0 0 0 9.2-13z"/></svg>+92 333 2732900</a>
+      <a href="https://www.linkedin.com/in/tameemahmad-shahzad-2022a8174" target="_blank" rel="noopener"><svg class="icon" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="7" y1="10" x2="7" y2="16"/><circle cx="7" cy="7" r="0.6" fill="currentColor"/><path d="M11 16v-6"/><path d="M11 11c0-1.5 1-2 2.2-2 1.6 0 2.8 1 2.8 3v4"/></svg>LinkedIn</a>
+      <span><svg class="icon" viewBox="0 0 24 24"><path d="M12 21s-7-6.5-7-11a7 7 0 0 1 14 0c0 4.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.4"/></svg>Bahawalnagar, Punjab, Pakistan</span>
     </div>
     <small>&copy; <span id="year"></span> Tameem Ahmad Shahzad — built with plain HTML, CSS &amp; canvas.</small>
   </div>
@@ -527,6 +707,51 @@
 
 <script>
 document.getElementById('year').textContent = new Date().getFullYear();
+
+/* boot sequence */
+(function(){
+  var boot = document.getElementById('boot');
+  var bar = document.getElementById('boot-bar');
+  var pct = document.getElementById('boot-pct');
+  var line = document.getElementById('boot-line');
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+    boot.classList.add('hide'); return;
+  }
+  var msgs = ['INITIALIZING SYSTEM...','LOADING INTEGRATION GRAPH...','ESTABLISHING SECURE LINK...','READY.'];
+  var p = 0;
+  var t = setInterval(function(){
+    p += 4 + Math.random()*10;
+    if (p >= 100){ p = 100; clearInterval(t); }
+    bar.style.width = p + '%';
+    pct.textContent = Math.floor(p) + '%';
+    line.textContent = msgs[Math.min(msgs.length-1, Math.floor((p/100)*(msgs.length-1)))];
+    if (p >= 100){
+      setTimeout(function(){ boot.classList.add('hide'); }, 250);
+    }
+  }, 90);
+})();
+
+/* count-up stats */
+(function(){
+  var nums = document.querySelectorAll('.stat .num');
+  var seen = new WeakSet();
+  var io2 = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if (!e.isIntersecting || seen.has(e.target)) return;
+      seen.add(e.target);
+      var el = e.target, target = parseInt(el.dataset.target,10), suffix = el.dataset.suffix || '';
+      var start = performance.now(), dur = 1200;
+      function step(now){
+        var pr = Math.min(1,(now-start)/dur);
+        var eased = 1-Math.pow(1-pr,3);
+        el.textContent = Math.round(target*eased) + suffix;
+        if (pr<1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    });
+  }, {threshold:0.4});
+  nums.forEach(function(el){ io2.observe(el); });
+})();
 
 /* scroll reveal */
 var reveals = document.querySelectorAll('.reveal');
