@@ -402,6 +402,30 @@
   .pf .pf-row p{color:var(--muted)}
   .pf .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
   .pf .tags span{font-family:'JetBrains Mono',monospace;font-size:0.68rem;color:var(--muted);border:1px solid var(--border);border-radius:999px;padding:3px 10px}
+
+  .pf-sub-label{
+    font-family:'JetBrains Mono',monospace;font-size:0.72rem;letter-spacing:0.14em;color:var(--muted-dim);
+    text-transform:uppercase;margin:52px 0 20px;
+  }
+  .pf-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  @media (max-width:900px){.pf-grid{grid-template-columns:repeat(2,1fr)}}
+  @media (max-width:600px){.pf-grid{grid-template-columns:1fr}}
+  .pf-mini{
+    border:1px solid var(--border);border-radius:14px;background:var(--card);padding:18px;
+    transition:border-color .2s, background .2s, transform .2s;
+  }
+  .pf-mini:hover{border-color:var(--border-hi);background:var(--card-hover);transform:translateY(-3px)}
+  .pf-mini .thumb{
+    width:38px;height:38px;border-radius:9px;display:flex;align-items:center;justify-content:center;
+    background:rgba(51,217,196,0.08);border:1px solid rgba(51,217,196,0.3);margin-bottom:14px;
+  }
+  .pf-mini .thumb .icon{width:19px;height:19px;color:var(--cyan)}
+  .pf-mini .tag{
+    display:inline-block;font-family:'JetBrains Mono',monospace;font-size:0.64rem;letter-spacing:0.08em;
+    color:var(--orange);text-transform:uppercase;margin-bottom:8px;
+  }
+  .pf-mini h4{font-size:0.95rem;margin-bottom:6px;line-height:1.3}
+  .pf-mini p{color:var(--muted);font-size:0.82rem}
 </style>
 </head>
 <body>
@@ -551,6 +575,7 @@
   <div class="wrap reveal">
     <div class="eyebrow">03 · Portfolio</div>
     <h2>Selected builds</h2>
+    <div class="pf-sub-label" style="margin-top:0">Featured</div>
     <div class="pf-list">
       <div class="pf hud">
         <div class="c2"></div>
@@ -590,6 +615,82 @@
           </div>
           <div class="tags"><span>Bi-directional Sync</span><span>Timeline Events</span><span>Automation</span></div>
         </div>
+      </div>
+    </div>
+
+    <div class="pf-sub-label">More builds</div>
+    <div class="pf-grid">
+      <div class="pf-mini hud"><div class="c2"></div>
+        <div class="thumb"><svg class="icon" viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M5 21V10l7-6 7 6v11"/><path d="M9 21v-6h6v6"/></svg></div>
+        <div class="tag">Real Estate</div>
+        <h4>Listing &amp; property sync</h4>
+        <p>Property CRM listings mirrored into HubSpot as searchable, stage-tracked deal records.</p>
+      </div>
+      <div class="pf-mini hud"><div class="c2"></div>
+        <div class="thumb"><svg class="icon" viewBox="0 0 24 24"><rect x="3" y="4" width="7" height="7"/><rect x="14" y="4" width="7" height="7"/><rect x="3" y="15" width="7" height="7"/><rect x="14" y="15" width="7" height="7"/></svg></div>
+        <div class="tag">Commercial Property</div>
+        <h4>Unit-level deal pipeline</h4>
+        <p>Custom objects modeling buildings, units and leases so commercial deals track at the right granularity.</p>
+      </div>
+      <div class="pf-mini hud"><div class="c2"></div>
+        <div class="thumb"><svg class="icon" viewBox="0 0 24 24"><path d="M13 2 3 14h7l-1 8 10-12h-7l1-8z"/></svg></div>
+        <div class="tag">Zapier</div>
+        <h4>No-code ops automation</h4>
+        <p>Lightweight Zapier flows for teams that need a fast bridge without a full custom integration.</p>
+      </div>
+      <div class="pf-mini hud"><div class="c2"></div>
+        <div class="thumb"><svg class="icon" viewBox="0 0 24 24"><circle cx="6" cy="6" r="2.5"/><circle cx="18" cy="6" r="2.5"/><circle cx="12" cy="18" r="2.5"/><path d="M8 7l6 9M16 7l-6 9"/></svg></div>
+        <div class="tag">n8n</div>
+        <h4>Self-hosted workflow orchestration</h4>
+        <p>Multi-step n8n flows for logic too complex or too sensitive for a no-code SaaS tool.</p>
+      </div>
+      <div class="pf-mini hud"><div class="c2"></div>
+        <div class="thumb"><svg class="icon" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 12h8M8 8h8M8 16h5"/></svg></div>
+        <div class="tag">UI Extensions</div>
+        <h4>Custom CRM cards for reps</h4>
+        <p>HubSpot UI extensions surfacing external billing and booking data right inside the contact record.</p>
+      </div>
+      <div class="pf-mini hud"><div class="c2"></div>
+        <div class="thumb"><svg class="icon" viewBox="0 0 24 24"><path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"/></svg></div>
+        <div class="tag">Serverless</div>
+        <h4>Serverless middleware functions</h4>
+        <p>HubSpot serverless functions handling auth and light transforms between CRM and external APIs.</p>
+      </div>
+      <div class="pf-mini hud"><div class="c2"></div>
+        <div class="thumb"><svg class="icon" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+        <div class="tag">Security</div>
+        <h4>Webhook signature framework</h4>
+        <p>A reusable verification layer so every inbound webhook is authenticated before it touches data.</p>
+      </div>
+      <div class="pf-mini hud"><div class="c2"></div>
+        <div class="thumb"><svg class="icon" viewBox="0 0 24 24"><rect x="2" y="7" width="8" height="13" rx="1"/><rect x="14" y="4" width="8" height="16" rx="1"/></svg></div>
+        <div class="tag">Multi-Tenant</div>
+        <h4>Multi-portal billing sync</h4>
+        <p>Subscription lifecycle kept consistent across several HubSpot portals sharing one billing backend.</p>
+      </div>
+      <div class="pf-mini hud"><div class="c2"></div>
+        <div class="thumb"><svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9 12l2 2 4-4"/></svg></div>
+        <div class="tag">Data Hygiene</div>
+        <h4>Contact dedupe engine</h4>
+        <p>Workflow-driven matching and merge rules that keep the CRM's contact base clean at scale.</p>
+      </div>
+      <div class="pf-mini hud"><div class="c2"></div>
+        <div class="thumb"><svg class="icon" viewBox="0 0 24 24"><path d="M3 20V10M9 20V4M15 20v-7M21 20V8"/></svg></div>
+        <div class="tag">Reporting</div>
+        <h4>Revenue attribution feed</h4>
+        <p>External revenue and usage data piped into HubSpot so reporting reflects the whole funnel.</p>
+      </div>
+      <div class="pf-mini hud"><div class="c2"></div>
+        <div class="thumb"><svg class="icon" viewBox="0 0 24 24"><path d="M4 4v6h6M20 20v-6h-6"/><path d="M4 10a8 8 0 0 1 14-5M20 14a8 8 0 0 1-14 5"/></svg></div>
+        <div class="tag">Rate Limits</div>
+        <h4>Bulk backfill engine</h4>
+        <p>Chunked, rate-limit-aware batch sync for safely backfilling years of historical records.</p>
+      </div>
+      <div class="pf-mini hud"><div class="c2"></div>
+        <div class="thumb"><svg class="icon" viewBox="0 0 24 24"><path d="M21 8V5a2 2 0 0 0-2-2h-3M3 16v3a2 2 0 0 0 2 2h3M16 21h3a2 2 0 0 0 2-2v-3M8 3H5a2 2 0 0 0-2 2v3"/></svg></div>
+        <div class="tag">Migration</div>
+        <h4>Legacy CRM migration toolkit</h4>
+        <p>Field-mapped, validated migration of records and history from a legacy CRM into HubSpot custom objects.</p>
       </div>
     </div>
   </div>
