@@ -389,6 +389,22 @@
   .pstep h4{font-size:0.95rem;margin-bottom:6px}
   .pstep p{color:var(--muted);font-size:0.84rem}
 
+  /* mcp / agents */
+  .mcp-layout{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:center}
+  @media (max-width:900px){.mcp-layout{grid-template-columns:1fr}}
+  .mcp-diagram{border:1px solid var(--border);border-radius:16px;background:linear-gradient(160deg,rgba(255,255,255,0.04),rgba(255,255,255,0.01));padding:30px 16px}
+  .mcp-diagram svg{width:100%;height:auto;display:block}
+  .mcp-node-label{font-family:'JetBrains Mono',monospace;font-size:10px;fill:var(--muted)}
+  .mcp-cap-list{display:flex;flex-direction:column;gap:18px}
+  .mcp-cap{border:1px solid var(--border);border-radius:12px;padding:20px;background:var(--card);transition:border-color .2s,background .2s}
+  .mcp-cap:hover{border-color:var(--border-hi);background:var(--card-hover)}
+  .mcp-cap h4{font-size:0.98rem;margin-bottom:6px;display:flex;align-items:center;gap:10px}
+  .mcp-cap p{color:var(--muted);font-size:0.87rem}
+  .flow-dot{animation:flow 3s linear infinite}
+  .flow-dot.d2{animation-delay:1s}
+  .flow-dot.d3{animation-delay:2s}
+  @keyframes flow{0%{offset-distance:0%;opacity:0}8%{opacity:1}92%{opacity:1}100%{offset-distance:100%;opacity:0}}
+
   /* portfolio */
   .pf-list{display:flex;flex-direction:column;gap:20px}
   .pf{
@@ -471,6 +487,7 @@
       <a href="#about">About</a>
       <a href="#capabilities">Capabilities</a>
       <a href="#portfolio">Portfolio</a>
+      <a href="#mcp-agents">AI Agents</a>
       <a href="#process">Process</a>
       <a href="#skills">Skills</a>
       <a href="#experience">Experience</a>
@@ -770,9 +787,80 @@
   </div>
 </section>
 
+<section id="mcp-agents">
+  <div class="wrap reveal">
+    <div class="eyebrow">04 · AI Agents</div>
+    <h2>Built for the agent era</h2>
+    <div class="mcp-layout">
+      <div class="mcp-diagram">
+        <svg viewBox="0 0 700 220" preserveAspectRatio="xMidYMid meet">
+          <line x1="140" y1="110" x2="310" y2="110" stroke="#f5c26b" stroke-width="1.5" opacity="0.35"/>
+          <line x1="390" y1="110" x2="560" y2="110" stroke="#ff7a59" stroke-width="1.5" opacity="0.5"/>
+
+          <circle class="flow-dot" r="3.5" fill="#f5c26b" style="offset-path:path('M140,110 L310,110')"/>
+          <circle class="flow-dot d2" r="3.5" fill="#f5c26b" style="offset-path:path('M140,110 L310,110')"/>
+          <circle class="flow-dot" r="3.5" fill="var(--orange)" style="offset-path:path('M390,110 L560,110')"/>
+          <circle class="flow-dot d3" r="3.5" fill="var(--orange)" style="offset-path:path('M390,110 L560,110')"/>
+
+          <circle cx="100" cy="110" r="34" fill="#0a1424" stroke="#f5c26b" stroke-width="1.5"/>
+          <path d="M88 100h24v20a12 12 0 0 1-24 0z" fill="none" stroke="#f5c26b" stroke-width="1.6"/>
+          <circle cx="94" cy="107" r="1.6" fill="#f5c26b"/>
+          <circle cx="106" cy="107" r="1.6" fill="#f5c26b"/>
+          <line x1="100" y1="90" x2="100" y2="100" stroke="#f5c26b" stroke-width="1.6"/>
+          <text x="100" y="164" text-anchor="middle" class="mcp-node-label">AI AGENT</text>
+
+          <circle cx="350" cy="110" r="34" fill="#0a1424" stroke="#eef2fb" stroke-width="1.5"/>
+          <rect x="333" y="98" width="34" height="24" rx="3" fill="none" stroke="#eef2fb" stroke-width="1.4"/>
+          <line x1="339" y1="105" x2="353" y2="105" stroke="#eef2fb" stroke-width="1.2"/>
+          <line x1="339" y1="110" x2="349" y2="110" stroke="#eef2fb" stroke-width="1.2"/>
+          <line x1="339" y1="115" x2="357" y2="115" stroke="#eef2fb" stroke-width="1.2"/>
+          <text x="350" y="164" text-anchor="middle" class="mcp-node-label">MCP SERVER</text>
+
+          <circle cx="600" cy="110" r="34" fill="#0a1424" stroke="#ff7a59" stroke-width="1.5"/>
+          <use href="#hs-mark" x="588" y="98" width="24" height="24" color="#ff7a59"/>
+          <text x="600" y="164" text-anchor="middle" class="mcp-node-label">HUBSPOT</text>
+        </svg>
+      </div>
+      <div class="mcp-cap-list">
+        <div class="mcp-cap hud"><div class="c2"></div>
+          <h4>MCP tool servers</h4>
+          <p>HubSpot objects, workflows and timelines exposed as typed, permissioned tools an agent can call &ndash; not a raw API surface it has to guess at.</p>
+        </div>
+        <div class="mcp-cap hud"><div class="c2"></div>
+          <h4>Guarded write access</h4>
+          <p>Every agent-triggered write runs through the same validation, idempotency and audit trail as a human-triggered one. No silent side effects.</p>
+        </div>
+        <div class="mcp-cap hud"><div class="c2"></div>
+          <h4>Structured context, not dumps</h4>
+          <p>Deals, tickets and contact history shaped into the context an agent actually needs, so answers stay grounded instead of hallucinated.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="code-win" style="margin-top:32px">
+      <div class="bar2"><i></i><i></i><i></i><span>hubspot_mcp_tool.ts</span></div>
+      <pre><span class="v">server</span>.<span class="f">registerTool</span>(<span class="s">"get_deal_summary"</span>, {
+  <span class="v">description</span>: <span class="s">"Read-only summary of a HubSpot deal for agent context"</span>,
+  <span class="v">inputSchema</span>: { <span class="v">dealId</span>: <span class="v">z</span>.<span class="f">string</span>() },
+
+  <span class="k">async</span> <span class="f">handler</span>({ <span class="v">dealId</span> }) {
+    <span class="c">// scoped token, read-only &ndash; the agent never touches raw creds</span>
+    <span class="k">const</span> <span class="v">deal</span> = <span class="k">await</span> <span class="v">hubspot</span>.<span class="f">deals</span>.<span class="f">get</span>(<span class="v">dealId</span>, { <span class="v">readOnly</span>: <span class="k">true</span> });
+
+    <span class="k">return</span> {
+      <span class="v">stage</span>: <span class="v">deal</span>.<span class="v">stage</span>,
+      <span class="v">amount</span>: <span class="v">deal</span>.<span class="v">amount</span>,
+      <span class="v">lastActivity</span>: <span class="v">deal</span>.<span class="v">timeline</span>.<span class="f">latest</span>()
+    };
+  }
+});</pre>
+    </div>
+  </div>
+</section>
+
 <section id="under-the-hood">
   <div class="wrap reveal">
-    <div class="eyebrow">04 · Under the hood</div>
+    <div class="eyebrow">05 · Under the hood</div>
     <h2>How a sync actually survives production</h2>
     <div class="code-win">
       <div class="bar2"><i></i><i></i><i></i><span>webhook_handler.php</span></div>
@@ -843,7 +931,7 @@
 
 <section id="process">
   <div class="wrap reveal">
-    <div class="eyebrow">05 · Process</div>
+    <div class="eyebrow">06 · Process</div>
     <h2>How an engagement runs</h2>
     <div class="process">
       <div class="pstep"><div class="n">01</div><h4>Discover</h4><p>Map the systems you already run on and where HubSpot's native tools stop being enough.</p></div>
@@ -857,7 +945,7 @@
 
 <section id="skills">
   <div class="wrap reveal">
-    <div class="eyebrow">06 · Stack</div>
+    <div class="eyebrow">07 · Stack</div>
     <h2>Skills &amp; tools</h2>
     <div class="skill-groups">
       <div class="skill-group hud">
@@ -896,7 +984,7 @@
 
 <section id="experience">
   <div class="wrap reveal">
-    <div class="eyebrow">07 · Career</div>
+    <div class="eyebrow">08 · Career</div>
     <h2>Experience</h2>
     <div class="timeline">
 
@@ -948,7 +1036,7 @@
 
 <section id="education">
   <div class="wrap reveal">
-    <div class="eyebrow">08 · Education</div>
+    <div class="eyebrow">09 · Education</div>
     <h2>Education</h2>
     <div class="grid2">
       <div class="card" style="display:flex;gap:16px;align-items:flex-start">
@@ -964,7 +1052,7 @@
 
 <section id="certifications">
   <div class="wrap reveal">
-    <div class="eyebrow">09 · Certifications</div>
+    <div class="eyebrow">10 · Certifications</div>
     <h2>Certifications</h2>
     <div class="cert-grid">
       <div class="cert hud"><div class="c2"></div><span class="check"><svg class="icon" viewBox="0 0 24 24" style="width:13px;height:13px"><path d="M20 6L9 17l-5-5"/></svg></span>AI Fluency for Small Businesses</div>
@@ -978,7 +1066,7 @@
 
 <footer id="contact">
   <div class="wrap reveal">
-    <div class="eyebrow">10 · Contact</div>
+    <div class="eyebrow">11 · Contact</div>
     <h2>Let's connect your stack.</h2>
     <p class="lead">If your business has outgrown native integrations and needs HubSpot to work seamlessly with your existing tools, let's talk.</p>
     <div class="cta">
