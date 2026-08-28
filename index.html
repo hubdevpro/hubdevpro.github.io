@@ -70,14 +70,53 @@
 <nav>
   <div class="inner">
     <div class="logo"><svg class="icon" style="width:20px;height:20px;color:var(--orange)"><use href="#hs-mark"/></svg>Tameem Ahmad Shahzad<span class="mono" style="color:var(--muted-dim);margin-left:8px;font-size:0.72rem">/ hubdevpro</span></div>
-    <div class="links">
-      <a href="#about">About</a>
-      <a href="services.html">Services</a>
-      <a href="case-studies.html">Case Studies</a>
-      <a href="#contact">Contact</a>
-    </div>
+    <button class="menu-btn" id="menu-btn" aria-expanded="false" aria-controls="mega">
+      <svg class="grid-ic" viewBox="0 0 20 20"><rect x="2" y="2" width="7" height="7" rx="1.5"/><rect x="11" y="2" width="7" height="7" rx="1.5"/><rect x="2" y="11" width="7" height="7" rx="1.5"/><rect x="11" y="11" width="7" height="7" rx="1.5"/></svg>
+      Menu
+      <svg class="chev" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 7l5 5 5-5"/></svg>
+    </button>
   </div>
 </nav>
+
+<div class="mega" id="mega">
+  <div class="mega-inner">
+    <div>
+      <div class="mega-label">Services</div>
+      <a class="mega-item" href="zapier.html">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M13 2 3 14h7l-1 8 10-12h-7l1-8z"/></svg></span>
+        <span class="txt"><b>Zapier</b><span>No-code automation, live in days</span></span>
+      </a>
+      <a class="mega-item" href="n8n.html">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="6" cy="6" r="2.5"/><circle cx="18" cy="6" r="2.5"/><circle cx="12" cy="18" r="2.5"/><path d="M8 7l6 9M16 7l-6 9"/></svg></span>
+        <span class="txt"><b>n8n</b><span>Self-hosted workflow automation</span></span>
+      </a>
+      <a class="mega-item" href="laravel.html">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="6" rx="1.5"/><rect x="3" y="14" width="18" height="6" rx="1.5"/></svg></span>
+        <span class="txt"><b>Laravel</b><span>Custom backend for real logic</span></span>
+      </a>
+      <a class="mega-item" href="auth0.html">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span>
+        <span class="txt"><b>Auth0</b><span>Identity, login &amp; SSO</span></span>
+      </a>
+    </div>
+    <div>
+      <div class="mega-label">Explore</div>
+      <div class="mega-simple">
+        <a href="index.html">Home</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#portfolio">Portfolio</a>
+        <a href="index.html#mcp-agents">AI Agents &amp; MCP</a>
+        <a href="services.html">All Services</a>
+      </div>
+    </div>
+    <div class="mega-cta">
+      <div class="mega-label">Case Studies</div>
+      <p>Five real integration patterns, walked through end to end &ndash; the situation, the build, the result.</p>
+      <a class="btn primary" href="case-studies.html">View Case Studies</a>
+      <a class="btn ghost" href="index.html#contact">Contact Me</a>
+    </div>
+  </div>
+</div>
 
 <header>
   <div class="wrap hero-grid">

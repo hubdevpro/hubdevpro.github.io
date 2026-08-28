@@ -258,3 +258,22 @@ HDP.heroDiagram = function(canvasId, centerLabel, services){
   window.addEventListener('resize', resize);
   resize(); draw();
 };
+
+/* mega menu toggle */
+(function(){
+  var btn = document.getElementById('menu-btn');
+  var mega = document.getElementById('mega');
+  if (!btn || !mega) return;
+  function close(){ mega.classList.remove('open'); btn.setAttribute('aria-expanded','false'); }
+  function toggle(){
+    var open = !mega.classList.contains('open');
+    mega.classList.toggle('open', open);
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
+  btn.addEventListener('click', function(e){ e.stopPropagation(); toggle(); });
+  document.addEventListener('click', function(e){
+    if (!mega.contains(e.target) && !btn.contains(e.target)) close();
+  });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') close(); });
+  mega.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', close); });
+})();
