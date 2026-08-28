@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zapier + HubSpot Integrations, Explained | HubDevPro</title>
+<meta name="description" content="What Zapier is, why it matters for your business, and what kind of HubSpot automations I build with it &ndash; explained in plain language.">
+<meta property="og:title" content="Zapier + HubSpot &ndash; HubDevPro">
+<meta property="og:description" content="What Zapier is, why it matters for your business, and what kind of HubSpot automations I build with it &ndash; explained in plain language.">
+<meta property="og:image" content="https://hubdevpro.com/assets/gh-avatar.png">
+<meta property="og:url" content="https://hubdevpro.com/zapier.html">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Zapier + HubSpot &ndash; HubDevPro">
+<meta name="twitter:description" content="What Zapier is, why it matters for your business, and what kind of HubSpot automations I build with it &ndash; explained in plain language.">
+<meta name="twitter:image" content="https://hubdevpro.com/assets/gh-avatar.png">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#05070d">
+<link rel="canonical" href="https://hubdevpro.com/zapier.html">
+<link rel="icon" type="image/png" href="assets/gh-avatar.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<div id="boot">
+  <div class="line" id="boot-line">INITIALIZING SYSTEM...</div>
+  <div class="bar"><i id="boot-bar"></i></div>
+  <div class="pct" id="boot-pct">0%</div>
+</div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="hs-mark" viewBox="0 0 32 32">
+    <line x1="22" y1="10" x2="10" y2="22" stroke="currentColor" stroke-width="2.4"/>
+    <circle cx="23" cy="9" r="5" fill="currentColor"/>
+    <circle cx="9" cy="23" r="7.5" fill="none" stroke="currentColor" stroke-width="2.4"/>
+  </symbol>
+</svg>
+
+<canvas id="bg-canvas"></canvas>
+<div class="noise"></div>
+<div class="scanlines"></div>
+<div class="scan-sweep"></div>
+<div class="cursor-ring" id="cursor-ring"></div>
+<div class="cursor-dot" id="cursor-dot"></div>
+<div class="glow-orb orb-1"></div>
+<div class="glow-orb orb-2"></div>
+<div class="glow-orb orb-3"></div>
+
+<nav>
+  <div class="inner">
+    <div class="logo"><a href="index.html" style="display:flex;align-items:center;gap:8px;text-decoration:none;color:inherit"><svg class="icon" style="width:20px;height:20px;color:var(--orange)"><use href="#hs-mark"/></svg>Tameem Ahmad Shahzad<span class="mono" style="color:var(--muted-dim);margin-left:8px;font-size:0.72rem">/ hubdevpro</span></a></div>
+    <div class="links">
+      <a href="index.html">Home</a>
+      <a href="services.html">Services</a>
+      <a href="case-studies.html">Case Studies</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header style="min-height:auto;padding:150px 0 60px">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="kicker"><span class="ping"></span>Service &middot; No-Code Automation</div>
+      <h1>Zapier integrations that connect <span class="glitch-wrap"><span class="grad" data-text="HubSpot">HubSpot</span></span> without writing code</h1>
+      <p class="tagline">Zapier is the fastest way to get two apps talking to each other. No developers, no deploys, no waiting &ndash; just a working automation, usually the same day.</p>
+      <div class="term mono" id="term-text-wrap"><span id="term-text"></span><span class="cur"></span></div>
+      <div class="cta">
+        <a class="btn primary" href="mailto:tamimahmadiub@gmail.com">Email me &rarr;</a>
+        <a class="btn ghost" href="index.html">&larr; Back to Home</a>
+      </div>
+    </div>
+    <div class="diagram hud">
+      <div class="c2"></div>
+      <div class="tag mono">integration_graph.live</div>
+      <canvas id="hero-canvas"></canvas>
+    </div>
+  </div>
+</header>
+
+<section id="what-is">
+  <div class="floaters">
+    <span class="fl a" style="top:10%;left:5%;animation-duration:8s"><svg width="22" height="22" viewBox="0 0 22 22"><circle cx="11" cy="11" r="9" fill="none" stroke="#f5c26b" stroke-width="1.5"/></svg></span>
+  </div>
+  <div class="wrap reveal">
+    <div class="eyebrow">01 &middot; What is it</div>
+    <h2>Zapier, explained in plain English</h2>
+    <p style="color:var(--muted);max-width:70ch;font-size:1.06rem">
+      Zapier is a &quot;when this happens, do that&quot; tool. You pick a <b style="color:var(--text)">trigger</b> in one app
+      (say, a new form submission on your website), and Zapier automatically performs an <b style="color:var(--text)">action</b>
+      in another app (say, creating a contact in HubSpot). No code, no server to maintain &ndash; it runs entirely in Zapier&#8217;s
+      cloud. It connects to thousands of apps out of the box, which makes it the right starting point for most simple,
+      low-volume automations.
+    </p>
+  </div>
+</section>
+
+<section id="why">
+  <div class="wrap reveal">
+    <div class="eyebrow">02 &middot; Why it matters</div>
+    <h2>Why businesses start here</h2>
+    <div class="cap-grid">
+      <div class="cap hud"><div class="c2"></div>
+        <div class="cap-idx">01</div>
+        <h3>Live in days, not weeks</h3>
+        <p>No development cycle. A working Zap can go from idea to production the same day, which matters when the automation is blocking real work.</p>
+      </div>
+      <div class="cap hud"><div class="c2"></div>
+        <div class="cap-idx">02</div>
+        <h3>No server to maintain</h3>
+        <p>Zapier hosts and runs everything. There&#8217;s no infrastructure for your team to patch, monitor or pay a hosting bill for.</p>
+      </div>
+      <div class="cap hud"><div class="c2"></div>
+        <div class="cap-idx">03</div>
+        <h3>Thousands of apps, one interface</h3>
+        <p>Gmail, Slack, Sheets, Stripe, Typeform, Shopify &ndash; if your team already uses it, Zapier probably already connects to it.</p>
+      </div>
+      <div class="cap hud"><div class="c2"></div>
+        <div class="cap-idx">04</div>
+        <h3>You can see exactly what it does</h3>
+        <p>Every Zap is a visible, step-by-step flow. Your team can look at it and understand the logic without reading code.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="flow">
+  <div class="wrap reveal">
+    <div class="eyebrow">03 &middot; How a Zap works</div>
+    <h2>A typical Zap I build</h2>
+    <div class="process">
+      <div class="pstep"><div class="n">1</div><h4>Trigger</h4><p>Something happens &ndash; a form is submitted, a deal changes stage, a payment succeeds.</p></div>
+      <div class="pstep"><div class="n">2</div><h4>Filter</h4><p>Only continue if it matters &ndash; e.g. only for deals over a certain value.</p></div>
+      <div class="pstep"><div class="n">3</div><h4>Format</h4><p>Clean up the data &ndash; split a name, format a phone number, map a dropdown value.</p></div>
+      <div class="pstep"><div class="n">4</div><h4>Action</h4><p>Do the thing &ndash; create or update a record in HubSpot, send a Slack alert, log a row.</p></div>
+      <div class="pstep"><div class="n">5</div><h4>Confirm</h4><p>Error handling so a failed step notifies someone instead of silently vanishing.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="examples">
+  <div class="wrap reveal">
+    <div class="eyebrow">04 &middot; Examples</div>
+    <h2>What I build with Zapier</h2>
+    <div class="pf-grid">
+      <div class="pf-mini hud"><div class="c2"></div>
+        <div class="thumb"><svg class="icon" viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><path d="M4 9h16"/></svg></div>
+        <div class="tag">Lead Capture</div>
+        <h4>Form-to-CRM sync</h4>
+        <p>Website and landing page forms create or update HubSpot contacts instantly, with UTM data attached.</p>
+      </div>
+      <div class="pf-mini hud"><div class="c2"></div>
+        <div class="thumb"><svg class="icon" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+        <div class="tag">Team Alerts</div>
+        <h4>Slack notifications on deal changes</h4>
+        <p>Sales gets pinged in Slack the moment a high-value deal moves stage &ndash; no one has to watch the CRM.</p>
+      </div>
+      <div class="pf-mini hud"><div class="c2"></div>
+        <div class="thumb"><svg class="icon" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg></div>
+        <div class="tag">Reporting</div>
+        <h4>Auto-logging to Google Sheets</h4>
+        <p>Every closed deal, every new subscriber &ndash; logged to a spreadsheet your team already trusts.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="limits">
+  <div class="wrap reveal">
+    <div class="eyebrow">05 &middot; Being honest</div>
+    <h2>Where Zapier stops making sense</h2>
+    <p style="color:var(--muted);max-width:70ch;font-size:1.06rem;margin-bottom:24px">
+      Zapier is great until it isn&#8217;t. I&#8217;ll tell you when that line is, instead of stretching a
+      no-code tool past what it&#8217;s good at:
+    </p>
+    <div class="grid2">
+      <div class="card">
+        <h3>High volume</h3>
+        <p>Thousands of runs a day get expensive fast, and Zapier&#8217;s rate limits start to bite. That&#8217;s when <a href="n8n.html" style="color:var(--gold)">n8n</a> or a custom backend makes more sense.</p>
+      </div>
+      <div class="card">
+        <h3>Complex branching logic</h3>
+        <p>Multi-step conditional logic, loops, or anything stateful gets fragile in Zapier&#8217;s linear flow. That&#8217;s a job for <a href="laravel.html" style="color:var(--gold)">Laravel</a>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="related">
+  <div class="wrap reveal">
+    <div class="eyebrow">06 &middot; See it in action</div>
+    <h2>Related case study</h2>
+    <a href="case-studies.html#billing" class="pf hud" style="text-decoration:none;color:inherit">
+      <div class="c2"></div>
+      <div class="pf-num">01</div>
+      <div>
+        <h3>Recurring billing bridge</h3>
+        <p style="color:var(--muted)">How a simple trigger-based automation grew into a full Stripe &harr; HubSpot billing sync. Read the full story &rarr;</p>
+      </div>
+    </a>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="floaters">
+    <span class="fl a" style="top:12%;left:8%;animation-duration:9s"><svg width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="none" stroke="#f5c26b" stroke-width="1.5"/></svg></span>
+    <span class="fl b" style="top:75%;left:90%;animation-duration:8s;animation-delay:.5s"><svg width="20" height="20" viewBox="0 0 20 20"><rect x="4" y="4" width="12" height="12" fill="none" stroke="#ff7a59" stroke-width="1.5" transform="rotate(45 10 10)"/></svg></span>
+    <span class="fl c" style="top:40%;left:95%;animation-duration:6.5s"><svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="#ff9d7a"/></svg></span>
+  </div>
+  <div class="wrap reveal">
+    <div class="eyebrow" style="justify-content:center">Contact</div>
+    <h2>Let&#8217;s connect your stack.</h2>
+    <p class="lead">If your business has outgrown native integrations and needs HubSpot to work seamlessly with your existing tools, let&#8217;s talk.</p>
+    <div class="cta">
+      <a class="btn primary" href="mailto:tamimahmadiub@gmail.com">Email me &rarr;</a>
+      <a class="btn whatsapp" href="https://wa.me/923332732900" target="_blank" rel="noopener">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.1-1.6-.8-1.9-.9-.2-.1-.4-.1-.6.1-.2.3-.7.9-.8 1-.2.2-.3.2-.5.1-.3-.1-1.2-.4-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.1.2-.3.3-.4.1-.2 0-.4 0-.5C11.1 9.2 10.7 8 10.5 7.5c-.2-.4-.3-.4-.5-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.1s.9 2.5 1.1 2.7c.1.2 1.9 2.9 4.6 4 .6.3 1.1.4 1.5.6.6.2 1.2.2 1.6.1.5-.1 1.6-.6 1.8-1.3.2-.6.2-1.1.2-1.2-.1-.1-.2-.2-.5-.3zM12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.6 1.4 5.1L2 22l5.1-1.3C8.5 21.5 10.2 22 12 22c5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18.2c-1.6 0-3.2-.4-4.5-1.2l-.3-.2-3 .8.8-3-.2-.3C4 14.9 3.6 13.5 3.6 12 3.6 7.4 7.4 3.6 12 3.6S20.4 7.4 20.4 12 16.6 20.2 12 20.2z"/></svg>
+        WhatsApp
+      </a>
+      <a class="btn ghost" href="https://www.linkedin.com/in/tameemahmad-shahzad-2022a8174" target="_blank" rel="noopener">Connect on LinkedIn</a>
+    </div>
+    <div class="contact-links">
+      <a href="mailto:tamimahmadiub@gmail.com"><svg class="icon" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>tamimahmadiub@gmail.com</a>
+      <a href="https://wa.me/923332732900" target="_blank" rel="noopener"><svg class="icon" viewBox="0 0 24 24"><path d="M17 7a8 8 0 1 0-13 9.4L3 21l4.8-1a8 8 0 0 0 9.2-13z"/></svg>+92 333 2732900</a>
+      <a href="https://www.linkedin.com/in/tameemahmad-shahzad-2022a8174" target="_blank" rel="noopener"><svg class="icon" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="7" y1="10" x2="7" y2="16"/><circle cx="7" cy="7" r="0.6" fill="currentColor"/><path d="M11 16v-6"/><path d="M11 11c0-1.5 1-2 2.2-2 1.6 0 2.8 1 2.8 3v4"/></svg>LinkedIn</a>
+      <span><svg class="icon" viewBox="0 0 24 24"><path d="M12 21s-7-6.5-7-11a7 7 0 0 1 14 0c0 4.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.4"/></svg>Bahawalnagar, Punjab, Pakistan</span>
+    </div>
+    <small>&copy; <span id="year"></span> Tameem Ahmad Shahzad &ndash; built with plain HTML, CSS &amp; canvas.</small>
+  </div>
+</footer>
+
+<script src="assets/site.js"></script>
+<script>
+HDP.termType('term-text', ['> connecting Zapier ... OK', '> trigger -> filter -> action ... OK']);
+HDP.heroDiagram('hero-canvas', 'Zapier', ['HubSpot','Gmail','Slack','Sheets','Stripe','Typeform']);
+</script>
+</body>
+</html>

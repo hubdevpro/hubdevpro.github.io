@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Laravel Backends for HubSpot Integrations, Explained | HubDevPro</title>
+<meta name="description" content="What Laravel is, why some HubSpot integrations need a custom backend instead of no-code tools, and what I build with it.">
+<meta property="og:title" content="Laravel + HubSpot &ndash; HubDevPro">
+<meta property="og:description" content="What Laravel is, why some HubSpot integrations need a custom backend instead of no-code tools, and what I build with it.">
+<meta property="og:image" content="https://hubdevpro.com/assets/gh-avatar.png">
+<meta property="og:url" content="https://hubdevpro.com/laravel.html">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Laravel + HubSpot &ndash; HubDevPro">
+<meta name="twitter:description" content="What Laravel is, why some HubSpot integrations need a custom backend instead of no-code tools, and what I build with it.">
+<meta name="twitter:image" content="https://hubdevpro.com/assets/gh-avatar.png">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#05070d">
+<link rel="canonical" href="https://hubdevpro.com/laravel.html">
+<link rel="icon" type="image/png" href="assets/gh-avatar.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<div id="boot">
+  <div class="line" id="boot-line">INITIALIZING SYSTEM...</div>
+  <div class="bar"><i id="boot-bar"></i></div>
+  <div class="pct" id="boot-pct">0%</div>
+</div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="hs-mark" viewBox="0 0 32 32">
+    <line x1="22" y1="10" x2="10" y2="22" stroke="currentColor" stroke-width="2.4"/>
+    <circle cx="23" cy="9" r="5" fill="currentColor"/>
+    <circle cx="9" cy="23" r="7.5" fill="none" stroke="currentColor" stroke-width="2.4"/>
+  </symbol>
+</svg>
+
+<canvas id="bg-canvas"></canvas>
+<div class="noise"></div>
+<div class="scanlines"></div>
+<div class="scan-sweep"></div>
+<div class="cursor-ring" id="cursor-ring"></div>
+<div class="cursor-dot" id="cursor-dot"></div>
+<div class="glow-orb orb-1"></div>
+<div class="glow-orb orb-2"></div>
+<div class="glow-orb orb-3"></div>
+
+<nav>
+  <div class="inner">
+    <div class="logo"><a href="index.html" style="display:flex;align-items:center;gap:8px;text-decoration:none;color:inherit"><svg class="icon" style="width:20px;height:20px;color:var(--orange)"><use href="#hs-mark"/></svg>Tameem Ahmad Shahzad<span class="mono" style="color:var(--muted-dim);margin-left:8px;font-size:0.72rem">/ hubdevpro</span></a></div>
+    <div class="links">
+      <a href="index.html">Home</a>
+      <a href="services.html">Services</a>
+      <a href="case-studies.html">Case Studies</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header style="min-height:auto;padding:150px 0 60px">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="kicker"><span class="ping"></span>Service &middot; Custom Backend</div>
+      <h1>Laravel: the backend that makes <span class="glitch-wrap"><span class="grad" data-text="HubSpot">HubSpot</span></span> integrations reliable</h1>
+      <p class="tagline">Zapier and n8n are great until an integration needs to own real logic, hold its own database, or process payments directly. That&#8217;s what Laravel is for &ndash; the custom-built engine behind the automation.</p>
+      <div class="term mono" id="term-text-wrap"><span id="term-text"></span><span class="cur"></span></div>
+      <div class="cta">
+        <a class="btn primary" href="mailto:tamimahmadiub@gmail.com">Email me &rarr;</a>
+        <a class="btn ghost" href="index.html">&larr; Back to Home</a>
+      </div>
+    </div>
+    <div class="diagram hud">
+      <div class="c2"></div>
+      <div class="tag mono">integration_graph.live</div>
+      <canvas id="hero-canvas"></canvas>
+    </div>
+  </div>
+</header>
+
+<section id="what-is">
+  <div class="floaters">
+    <span class="fl a" style="top:8%;left:5%;animation-duration:9s"><svg width="22" height="22" viewBox="0 0 22 22"><rect x="4" y="4" width="14" height="14" fill="none" stroke="#ff7a59" stroke-width="1.5" transform="rotate(45 11 11)"/></svg></span>
+  </div>
+  <div class="wrap reveal">
+    <div class="eyebrow">01 &middot; What is it</div>
+    <h2>Laravel, explained in plain English</h2>
+    <p style="color:var(--muted);max-width:70ch;font-size:1.06rem">
+      Laravel is a PHP framework for building custom backend applications &ndash; think of it as the engine room.
+      Where Zapier and n8n give you pre-built pieces to connect, Laravel is what I use to write the pieces that
+      don&#8217;t exist yet: a webhook receiver that has to survive real traffic, a billing engine that talks to
+      Stripe directly, an API that your other tools call. It&#8217;s the layer that turns &quot;connected systems&quot;
+      into a system your business actually depends on.
+    </p>
+  </div>
+</section>
+
+<section id="why">
+  <div class="wrap reveal">
+    <div class="eyebrow">02 &middot; Why it matters</div>
+    <h2>Why some integrations need it</h2>
+    <div class="cap-grid">
+      <div class="cap hud"><div class="c2"></div>
+        <div class="cap-idx">01</div>
+        <h3>No per-task fees, no platform limits</h3>
+        <p>You&#8217;re not paying per automation run, and you&#8217;re not bound by what a SaaS tool decided to support.</p>
+      </div>
+      <div class="cap hud"><div class="c2"></div>
+        <div class="cap-idx">02</div>
+        <h3>Owns its own data</h3>
+        <p>A real database for reconciliation, audit trails and reporting that outlives any single integration.</p>
+      </div>
+      <div class="cap hud"><div class="c2"></div>
+        <div class="cap-idx">03</div>
+        <h3>Built for reliability</h3>
+        <p>Retries, idempotency, signature verification and rate-limit handling &ndash; the plumbing that keeps a sync correct under real traffic.</p>
+      </div>
+      <div class="cap hud"><div class="c2"></div>
+        <div class="cap-idx">04</div>
+        <h3>Talks to anything</h3>
+        <p>Any API, any database, any payment processor &ndash; if it has a spec, Laravel can integrate with it.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="code">
+  <div class="wrap reveal">
+    <div class="eyebrow">03 &middot; Under the hood</div>
+    <h2>A queued sync job, for context</h2>
+    <div class="code-win">
+      <div class="bar2"><i></i><i></i><i></i><span>SyncDealToHubspot.php</span></div>
+      <pre><span class="k">class</span> <span class="f">SyncDealToHubspot</span> <span class="k">implements</span> <span class="v">ShouldQueue</span>
+{
+    <span class="k">public</span> <span class="v">$tries</span> = <span class="v">5</span>;
+    <span class="k">public</span> <span class="v">$backoff</span> = [<span class="v">10</span>, <span class="v">60</span>, <span class="v">300</span>];
+
+    <span class="k">public function</span> <span class="f">handle</span>(<span class="v">Hubspot</span> <span class="v">$hubspot</span>)
+    {
+        <span class="c">// idempotent by design: safe to retry, safe to re-run</span>
+        <span class="v">$hubspot</span>-&gt;<span class="f">deals</span>()-&gt;<span class="f">upsert</span>(
+            <span class="v">$this</span>-&gt;<span class="v">deal</span>-&gt;<span class="v">external_id</span>,
+            <span class="v">$this</span>-&gt;<span class="v">deal</span>-&gt;<span class="f">toHubspotPayload</span>()
+        );
+    }
+
+    <span class="k">public function</span> <span class="f">failed</span>(<span class="v">Throwable</span> <span class="v">$e</span>)
+    {
+        <span class="v">SyncFailure</span>::<span class="f">log</span>(<span class="v">$this</span>-&gt;<span class="v">deal</span>, <span class="v">$e</span>);
+    }
+}</pre>
+    </div>
+  </div>
+</section>
+
+<section id="examples">
+  <div class="wrap reveal">
+    <div class="eyebrow">04 &middot; Examples</div>
+    <h2>What I build with Laravel</h2>
+    <div class="pf-grid">
+      <div class="pf-mini hud"><div class="c2"></div>
+        <div class="thumb"><svg class="icon" viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg></div>
+        <div class="tag">Payments</div>
+        <h4>Direct Stripe / PayPal integration</h4>
+        <p>Subscription lifecycle handled server-side and mirrored into HubSpot deals and custom objects in real time.</p>
+      </div>
+      <div class="pf-mini hud"><div class="c2"></div>
+        <div class="thumb"><svg class="icon" viewBox="0 0 24 24"><path d="M3 20V10M9 20V4M15 20v-7M21 20V8"/></svg></div>
+        <div class="tag">Data</div>
+        <h4>ETL &amp; reporting pipelines</h4>
+        <p>Nightly jobs pull from multiple sources, reconcile against HubSpot, and feed clean data into dashboards.</p>
+      </div>
+      <div class="pf-mini hud"><div class="c2"></div>
+        <div class="thumb"><svg class="icon" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="8" y1="4" x2="8" y2="9"/></svg></div>
+        <div class="tag">Booking</div>
+        <h4>Custom booking &amp; scheduling engines</h4>
+        <p>Availability, session limits and cancellation rules that off-the-shelf booking tools can&#8217;t express.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="related">
+  <div class="wrap reveal">
+    <div class="eyebrow">05 &middot; See it in action</div>
+    <h2>Related case study</h2>
+    <a href="case-studies.html#billing" class="pf hud" style="text-decoration:none;color:inherit">
+      <div class="c2"></div>
+      <div class="pf-num">01</div>
+      <div>
+        <h3>Recurring billing bridge</h3>
+        <p style="color:var(--muted)">The Laravel backend that keeps Stripe subscription state and HubSpot deal stages perfectly in sync. Read the full story &rarr;</p>
+      </div>
+    </a>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="floaters">
+    <span class="fl a" style="top:12%;left:8%;animation-duration:9s"><svg width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="none" stroke="#f5c26b" stroke-width="1.5"/></svg></span>
+    <span class="fl b" style="top:75%;left:90%;animation-duration:8s;animation-delay:.5s"><svg width="20" height="20" viewBox="0 0 20 20"><rect x="4" y="4" width="12" height="12" fill="none" stroke="#ff7a59" stroke-width="1.5" transform="rotate(45 10 10)"/></svg></span>
+    <span class="fl c" style="top:40%;left:95%;animation-duration:6.5s"><svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="#ff9d7a"/></svg></span>
+  </div>
+  <div class="wrap reveal">
+    <div class="eyebrow" style="justify-content:center">Contact</div>
+    <h2>Let&#8217;s connect your stack.</h2>
+    <p class="lead">If your business has outgrown native integrations and needs HubSpot to work seamlessly with your existing tools, let&#8217;s talk.</p>
+    <div class="cta">
+      <a class="btn primary" href="mailto:tamimahmadiub@gmail.com">Email me &rarr;</a>
+      <a class="btn whatsapp" href="https://wa.me/923332732900" target="_blank" rel="noopener">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.1-1.6-.8-1.9-.9-.2-.1-.4-.1-.6.1-.2.3-.7.9-.8 1-.2.2-.3.2-.5.1-.3-.1-1.2-.4-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.1.2-.3.3-.4.1-.2 0-.4 0-.5C11.1 9.2 10.7 8 10.5 7.5c-.2-.4-.3-.4-.5-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.1s.9 2.5 1.1 2.7c.1.2 1.9 2.9 4.6 4 .6.3 1.1.4 1.5.6.6.2 1.2.2 1.6.1.5-.1 1.6-.6 1.8-1.3.2-.6.2-1.1.2-1.2-.1-.1-.2-.2-.5-.3zM12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.6 1.4 5.1L2 22l5.1-1.3C8.5 21.5 10.2 22 12 22c5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18.2c-1.6 0-3.2-.4-4.5-1.2l-.3-.2-3 .8.8-3-.2-.3C4 14.9 3.6 13.5 3.6 12 3.6 7.4 7.4 3.6 12 3.6S20.4 7.4 20.4 12 16.6 20.2 12 20.2z"/></svg>
+        WhatsApp
+      </a>
+      <a class="btn ghost" href="https://www.linkedin.com/in/tameemahmad-shahzad-2022a8174" target="_blank" rel="noopener">Connect on LinkedIn</a>
+    </div>
+    <div class="contact-links">
+      <a href="mailto:tamimahmadiub@gmail.com"><svg class="icon" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>tamimahmadiub@gmail.com</a>
+      <a href="https://wa.me/923332732900" target="_blank" rel="noopener"><svg class="icon" viewBox="0 0 24 24"><path d="M17 7a8 8 0 1 0-13 9.4L3 21l4.8-1a8 8 0 0 0 9.2-13z"/></svg>+92 333 2732900</a>
+      <a href="https://www.linkedin.com/in/tameemahmad-shahzad-2022a8174" target="_blank" rel="noopener"><svg class="icon" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="7" y1="10" x2="7" y2="16"/><circle cx="7" cy="7" r="0.6" fill="currentColor"/><path d="M11 16v-6"/><path d="M11 11c0-1.5 1-2 2.2-2 1.6 0 2.8 1 2.8 3v4"/></svg>LinkedIn</a>
+      <span><svg class="icon" viewBox="0 0 24 24"><path d="M12 21s-7-6.5-7-11a7 7 0 0 1 14 0c0 4.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.4"/></svg>Bahawalnagar, Punjab, Pakistan</span>
+    </div>
+    <small>&copy; <span id="year"></span> Tameem Ahmad Shahzad &ndash; built with plain HTML, CSS &amp; canvas.</small>
+  </div>
+</footer>
+
+<script src="assets/site.js"></script>
+<script>
+HDP.termType('term-text', ['> booting Laravel queue worker ... OK', '> retry policy loaded ... OK']);
+HDP.heroDiagram('hero-canvas', 'Laravel', ['HubSpot','Stripe','PayPal','Auth0','MySQL','Redis']);
+</script>
+</body>
+</html>
