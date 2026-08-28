@@ -281,12 +281,7 @@
     background:repeating-linear-gradient(0deg, rgba(255,255,255,0.025) 0px, rgba(255,255,255,0.025) 1px, transparent 1px, transparent 3px);
     mix-blend-mode:overlay;
   }
-  .scan-sweep{
-    position:fixed;left:0;right:0;height:140px;z-index:41;pointer-events:none;
-    background:linear-gradient(180deg, transparent, rgba(245,194,107,0.05), transparent);
-    animation:sweep-down 7s linear infinite;
-  }
-  @keyframes sweep-down{from{top:-140px}to{top:100vh}}
+  .scan-sweep{display:none}
 
   .cursor-dot, .cursor-ring{position:fixed;top:0;left:0;pointer-events:none;z-index:9999;border-radius:50%;transform:translate(-50%,-50%)}
   .cursor-dot{width:5px;height:5px;background:var(--gold);box-shadow:0 0 8px var(--gold)}
