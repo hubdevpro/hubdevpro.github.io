@@ -115,6 +115,16 @@
   .btn.ghost:hover{border-color:var(--border-hi);box-shadow:0 8px 30px rgba(245,194,107,0.18)}
   .btn.whatsapp{background:rgba(37,211,102,0.1);color:#25d366;border-color:rgba(37,211,102,0.4)}
   .btn.whatsapp:hover{box-shadow:0 8px 30px rgba(37,211,102,0.3);border-color:#25d366}
+  .btn.upwork{background:rgba(20,168,0,0.1);color:#14a800;border-color:rgba(20,168,0,0.4)}
+  .btn.upwork:hover{box-shadow:0 8px 30px rgba(20,168,0,0.3);border-color:#14a800}
+
+  .trp-badge{
+    display:inline-flex;align-items:center;gap:6px;padding:7px 14px 7px 10px;border-radius:999px;
+    background:rgba(20,168,0,0.08);border:1px solid rgba(20,168,0,0.35);
+    font-family:'JetBrains Mono',monospace;font-size:0.7rem;letter-spacing:0.06em;color:#14a800;
+    text-decoration:none;white-space:nowrap;
+  }
+  .trp-badge svg{width:14px;height:14px;flex:0 0 auto}
 
   @keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
 
