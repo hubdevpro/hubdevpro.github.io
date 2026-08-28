@@ -4,15 +4,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>HubSpot Integration Case Studies | HubDevPro</title>
-<meta name="description" content="Five detailed HubSpot integration case studies covering billing, identity, booking, real estate and CRM migration &ndash; the situation, the build, and the result.">
+<meta name="description" content="Twelve detailed HubSpot integration case studies covering billing, identity, booking, real estate, migration, financial automation, AI lead parsing, telephony and data pipelines &ndash; the situation, the build, and the result.">
 <meta property="og:title" content="Case Studies &ndash; HubDevPro">
-<meta property="og:description" content="Five detailed HubSpot integration case studies covering billing, identity, booking, real estate and CRM migration &ndash; the situation, the build, and the result.">
+<meta property="og:description" content="Twelve detailed HubSpot integration case studies covering billing, identity, booking, real estate, migration, financial automation, AI lead parsing, telephony and data pipelines &ndash; the situation, the build, and the result.">
 <meta property="og:image" content="https://hubdevpro.com/assets/gh-avatar.png">
 <meta property="og:url" content="https://hubdevpro.com/case-studies">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Case Studies &ndash; HubDevPro">
-<meta name="twitter:description" content="Five detailed HubSpot integration case studies covering billing, identity, booking, real estate and CRM migration &ndash; the situation, the build, and the result.">
+<meta name="twitter:description" content="Twelve detailed HubSpot integration case studies covering billing, identity, booking, real estate, migration, financial automation, AI lead parsing, telephony and data pipelines &ndash; the situation, the build, and the result.">
 <meta name="twitter:image" content="https://hubdevpro.com/assets/gh-avatar.png">
 <meta name="robots" content="index, follow">
 <meta name="theme-color" content="#05070d">
@@ -93,7 +93,7 @@
     </div>
     <div class="mega-cta">
       <div class="mega-label">Case Studies</div>
-      <p>Five real integration patterns, walked through end to end &ndash; the situation, the build, the result.</p>
+      <p>Twelve real integration patterns, walked through end to end &ndash; the situation, the build, the result.</p>
       <a class="btn primary" href="case-studies">View Case Studies</a>
       <a class="btn ghost" href="/#contact">Contact Me</a>
     </div>
@@ -105,7 +105,7 @@
     <div>
       <div class="kicker"><span class="ping"></span>Case Studies</div>
       <h1>Real integration patterns, explained the way I&#8217;d explain them to you</h1>
-      <p class="tagline">These are representative engagements built from the same patterns described throughout this site &ndash; the situation, what got built, and the outcome, in plain language rather than jargon.</p>
+      <p class="tagline">Twelve representative engagements built from the same patterns described throughout this site &ndash; the situation, what got built, and the outcome, in plain language rather than jargon.</p>
       <div class="term mono" id="term-text-wrap"><span id="term-text"></span><span class="cur"></span></div>
       <div class="cta">
         <a class="btn primary" href="mailto:tamimahmadiub@gmail.com">Email me &rarr;</a>
@@ -123,7 +123,7 @@
 <section id="cases">
   <div class="wrap reveal">
     <div class="eyebrow">01 &middot; Write-ups</div>
-    <h2>Five ways this plays out in practice</h2>
+    <h2>Twelve ways this plays out in practice</h2>
     <div class="pf-list">
 
     <div id="billing" class="pf hud" style="grid-template-columns:1fr;padding:0;overflow:hidden">
@@ -245,6 +245,170 @@
           <div><div class="k">The result</div><p>A clean cutover with a full audit trail, and no history lost in the move &ndash; a common risk in CRM migrations done by hand.</p></div>
         </div>
         <div class="tags" style="margin-top:20px"><span>Migration</span><span>Data Integrity</span><span>Rate Limits</span></div>
+      </div>
+    </div>
+
+    <div id="sqlsync" class="pf hud" style="grid-template-columns:1fr;padding:0;overflow:hidden">
+      <div class="c2"></div>
+      <div style="padding:30px">
+        <div class="banner" style="height:160px;margin-bottom:22px">
+          <svg viewBox="0 0 700 160" preserveAspectRatio="xMidYMid slice"><rect width="700" height="160" fill="#0a1424"/>
+<line x1="150" y1="80" x2="550" y2="80" stroke="#f5c26b" stroke-width="1.5" opacity="0.5"/>
+<line x1="150" y1="90" x2="550" y2="90" stroke="#ff7a59" stroke-width="1.5" opacity="0.4" stroke-dasharray="4 4"/>
+<circle cx="120" cy="80" r="26" fill="#0a1424" stroke="#f5c26b" stroke-width="1.5"/>
+<text x="120" y="122" text-anchor="middle" fill="#8b98b8" font-family="JetBrains Mono, monospace" font-size="10">SQL</text>
+<circle cx="580" cy="80" r="26" fill="#0a1424" stroke="#ff7a59" stroke-width="1.5"/>
+<text x="580" y="122" text-anchor="middle" fill="#8b98b8" font-family="JetBrains Mono, monospace" font-size="10">HUBSPOT</text></svg>
+        </div>
+        <div class="pf-num" style="font-size:1.3rem;margin-bottom:6px">CASE 06 &middot; Reporting</div>
+        <h3 style="font-size:1.4rem;margin-bottom:18px">Bi-directional SQL sync for trustworthy reporting</h3>
+        <div class="pf-row" style="grid-template-columns:1fr 1fr 1fr">
+          <div><div class="k">The situation</div><p>The CRM and the backing SQL database drifted out of sync. Records updated on one side didn&#8217;t reliably reach the other, so nobody trusted reports built on HubSpot data and the team reconciled by hand every week.</p></div>
+          <div><div class="k">What we built</div><p>Custom middleware syncing both directions on a time-windowed schedule, with per-field conflict rules deciding the source of truth, plus retries and logging so nothing failed silently at volume.</p></div>
+          <div><div class="k">The result</div><p>Both systems stay aligned with zero dropped records, and reporting is trustworthy again &ndash; no more manual reconciliation before a board meeting.</p></div>
+        </div>
+        <div class="tags" style="margin-top:20px"><span>SQL</span><span>PHP/Laravel</span><span>AWS</span><span>Webhooks</span></div>
+      </div>
+    </div>
+
+    <div id="exo" class="pf hud" style="grid-template-columns:1fr;padding:0;overflow:hidden">
+      <div class="c2"></div>
+      <div style="padding:30px">
+        <div class="banner" style="height:160px;margin-bottom:22px">
+          <svg viewBox="0 0 700 160" preserveAspectRatio="xMidYMid slice"><rect width="700" height="160" fill="#0a1424"/>
+<rect x="90" y="55" width="70" height="50" rx="4" fill="none" stroke="#f5c26b" stroke-width="1.4"/>
+<text x="125" y="85" text-anchor="middle" fill="#8b98b8" font-family="JetBrains Mono, monospace" font-size="9">EXO</text>
+<path d="M180 65h340M180 95h340" stroke="#ff7a59" stroke-width="1.3" opacity="0.5"/>
+<rect x="550" y="55" width="70" height="50" rx="4" fill="none" stroke="#ff7a59" stroke-width="1.4"/>
+<text x="585" y="85" text-anchor="middle" fill="#8b98b8" font-family="JetBrains Mono, monospace" font-size="9">HUBSPOT</text></svg>
+        </div>
+        <div class="pf-num" style="font-size:1.3rem;margin-bottom:6px">CASE 07 &middot; Operations</div>
+        <h3 style="font-size:1.4rem;margin-bottom:18px">EXO to HubSpot integration</h3>
+        <div class="pf-row" style="grid-template-columns:1fr 1fr 1fr">
+          <div><div class="k">The situation</div><p>Operational data lived in an EXO system, disconnected from the CRM. Sales and operations worked from two different versions of the truth, re-keying updates between them by hand.</p></div>
+          <div><div class="k">What we built</div><p>A bi-directional integration mapping objects and fields cleanly between EXO and HubSpot in both directions, handling the edge cases where the two data models didn&#8217;t line up.</p></div>
+          <div><div class="k">The result</div><p>Operational and CRM data stay in step automatically, removing manual re-entry and the errors that came with it.</p></div>
+        </div>
+        <div class="tags" style="margin-top:20px"><span>EXO</span><span>Custom Middleware</span><span>Webhooks</span></div>
+      </div>
+    </div>
+
+    <div id="stripe-automation" class="pf hud" style="grid-template-columns:1fr;padding:0;overflow:hidden">
+      <div class="c2"></div>
+      <div style="padding:30px">
+        <div class="banner" style="height:160px;margin-bottom:22px">
+          <svg viewBox="0 0 700 160" preserveAspectRatio="xMidYMid slice"><rect width="700" height="160" fill="#0a1424"/>
+<circle cx="130" cy="80" r="26" fill="#0a1424" stroke="#f5c26b" stroke-width="1.5"/>
+<text x="130" y="85" text-anchor="middle" fill="#f5c26b" font-family="JetBrains Mono, monospace" font-size="11">$</text>
+<line x1="160" y1="80" x2="540" y2="80" stroke="#ff7a59" stroke-width="1.5" opacity="0.55"/>
+<circle cx="570" cy="80" r="26" fill="#0a1424" stroke="#ff7a59" stroke-width="1.5"/>
+<text x="130" y="122" text-anchor="middle" fill="#8b98b8" font-family="JetBrains Mono, monospace" font-size="10">STRIPE</text>
+<text x="570" y="122" text-anchor="middle" fill="#8b98b8" font-family="JetBrains Mono, monospace" font-size="10">HUBSPOT</text></svg>
+        </div>
+        <div class="pf-num" style="font-size:1.3rem;margin-bottom:6px">CASE 08 &middot; Finance</div>
+        <h3 style="font-size:1.4rem;margin-bottom:18px">Stripe to HubSpot financial automation</h3>
+        <div class="pf-row" style="grid-template-columns:1fr 1fr 1fr">
+          <div><div class="k">The situation</div><p>Billing lived entirely in Stripe while the revenue picture lived in HubSpot, so deal records never reflected real payment and lifecycle events. Finance and sales reconciled by hand.</p></div>
+          <div><div class="k">What we built</div><p>A pipeline mapping Stripe billing and lifecycle events &ndash; new customers, successful and failed payments, subscription changes &ndash; straight into HubSpot deals, handling multi-tiered and international transactions and idempotent so retries never double-count.</p></div>
+          <div><div class="k">The result</div><p>Deal and revenue data reflect reality without manual reconciliation between finance and sales.</p></div>
+        </div>
+        <div class="tags" style="margin-top:20px"><span>Stripe</span><span>Stripe Connect</span><span>PHP/Laravel</span><span>AWS</span></div>
+      </div>
+    </div>
+
+    <div id="ai-leads" class="pf hud" style="grid-template-columns:1fr;padding:0;overflow:hidden">
+      <div class="c2"></div>
+      <div style="padding:30px">
+        <div class="banner" style="height:160px;margin-bottom:22px">
+          <svg viewBox="0 0 700 160" preserveAspectRatio="xMidYMid slice"><rect width="700" height="160" fill="#0a1424"/>
+<rect x="90" y="60" width="120" height="40" rx="4" fill="none" stroke="#8b98b8" stroke-width="1.3"/>
+<text x="150" y="84" text-anchor="middle" fill="#8b98b8" font-family="JetBrains Mono, monospace" font-size="9">RAW TEXT</text>
+<path d="M230 80h140" stroke="#f5c26b" stroke-width="1.5" stroke-dasharray="5 5"/>
+<circle cx="400" cy="80" r="24" fill="#0a1424" stroke="#f5c26b" stroke-width="1.5"/>
+<text x="400" y="84" text-anchor="middle" fill="#f5c26b" font-family="JetBrains Mono, monospace" font-size="9">AI</text>
+<line x1="424" y1="80" x2="550" y2="80" stroke="#ff7a59" stroke-width="1.5" opacity="0.6"/>
+<circle cx="580" cy="80" r="26" fill="#0a1424" stroke="#ff7a59" stroke-width="1.5"/>
+<text x="580" y="122" text-anchor="middle" fill="#8b98b8" font-family="JetBrains Mono, monospace" font-size="10">HUBSPOT</text></svg>
+        </div>
+        <div class="pf-num" style="font-size:1.3rem;margin-bottom:6px">CASE 09 &middot; AI / Lead Gen</div>
+        <h3 style="font-size:1.4rem;margin-bottom:18px">AI-powered lead parsing into HubSpot</h3>
+        <div class="pf-row" style="grid-template-columns:1fr 1fr 1fr">
+          <div><div class="k">The situation</div><p>Inbound leads arrived as unstructured text &ndash; portal emails, forwarded enquiries, messy form fills. Someone had to read each one and hand-key the details into the CRM.</p></div>
+          <div><div class="k">What we built</div><p>An LLM-powered pipeline on the Claude API that reads unstructured lead content, extracts the fields that matter, and pushes clean records into HubSpot to advance the deal automatically, flagging low-confidence extractions rather than trusting them blindly.</p></div>
+          <div><div class="k">The result</div><p>Leads go from raw text to structured, actionable CRM records with no manual data entry.</p></div>
+        </div>
+        <div class="tags" style="margin-top:20px"><span>Claude API</span><span>Python</span><span>Webhooks</span></div>
+      </div>
+    </div>
+
+    <div id="telephony" class="pf hud" style="grid-template-columns:1fr;padding:0;overflow:hidden">
+      <div class="c2"></div>
+      <div style="padding:30px">
+        <div class="banner" style="height:160px;margin-bottom:22px">
+          <svg viewBox="0 0 700 160" preserveAspectRatio="xMidYMid slice"><rect width="700" height="160" fill="#0a1424"/>
+<circle cx="130" cy="80" r="26" fill="#0a1424" stroke="#f5c26b" stroke-width="1.5"/>
+<path d="M120 72c4-4 12-4 16 0M118 80c7-7 17-7 24 0M116 88c9-9 22-9 31 0" stroke="#f5c26b" stroke-width="1.2" fill="none" opacity="0.7"/>
+<line x1="160" y1="80" x2="540" y2="80" stroke="#ff7a59" stroke-width="1.5" opacity="0.55"/>
+<circle cx="570" cy="80" r="26" fill="#0a1424" stroke="#ff7a59" stroke-width="1.5"/>
+<text x="130" y="122" text-anchor="middle" fill="#8b98b8" font-family="JetBrains Mono, monospace" font-size="10">PHONE</text>
+<text x="570" y="122" text-anchor="middle" fill="#8b98b8" font-family="JetBrains Mono, monospace" font-size="10">HUBSPOT</text></svg>
+        </div>
+        <div class="pf-num" style="font-size:1.3rem;margin-bottom:6px">CASE 10 &middot; Contact Center</div>
+        <h3 style="font-size:1.4rem;margin-bottom:18px">Telephony integration with HubSpot</h3>
+        <div class="pf-row" style="grid-template-columns:1fr 1fr 1fr">
+          <div><div class="k">The situation</div><p>The phone system and the CRM were separate worlds. No click-to-call, unreliable call logging, no screen pops &ndash; context got lost on every conversation.</p></div>
+          <div><div class="k">What we built</div><p>An end-to-end integration: click-to-call, automatic call logging, screen pops driven by CRM data, call routing, and call-outcome syncing, with dashboards on top so managers see activity and results in one place.</p></div>
+          <div><div class="k">The result</div><p>The phone system and CRM behave as one clean system, with full call visibility and reporting.</p></div>
+        </div>
+        <div class="tags" style="margin-top:20px"><span>Telephony/VoIP</span><span>Aircall</span><span>Custom Middleware</span></div>
+      </div>
+    </div>
+
+    <div id="snowflake" class="pf hud" style="grid-template-columns:1fr;padding:0;overflow:hidden">
+      <div class="c2"></div>
+      <div style="padding:30px">
+        <div class="banner" style="height:160px;margin-bottom:22px">
+          <svg viewBox="0 0 700 160" preserveAspectRatio="xMidYMid slice"><rect width="700" height="160" fill="#0a1424"/>
+<circle cx="130" cy="80" r="26" fill="#0a1424" stroke="#f5c26b" stroke-width="1.5"/>
+<text x="130" y="122" text-anchor="middle" fill="#8b98b8" font-family="JetBrains Mono, monospace" font-size="10">HUBSPOT</text>
+<line x1="160" y1="80" x2="540" y2="80" stroke="#f5c26b" stroke-width="1.5" opacity="0.5"/>
+<polygon points="570,58 590,68 590,92 570,102 550,92 550,68" fill="none" stroke="#ff7a59" stroke-width="1.5"/>
+<text x="570" y="122" text-anchor="middle" fill="#8b98b8" font-family="JetBrains Mono, monospace" font-size="9">SNOWFLAKE</text></svg>
+        </div>
+        <div class="pf-num" style="font-size:1.3rem;margin-bottom:6px">CASE 11 &middot; Analytics / BI</div>
+        <h3 style="font-size:1.4rem;margin-bottom:18px">HubSpot to Snowflake data pipeline</h3>
+        <div class="pf-row" style="grid-template-columns:1fr 1fr 1fr">
+          <div><div class="k">The situation</div><p>The analytics team needed HubSpot data in their Snowflake warehouse for reporting, but exports were manual, stale, and insecure.</p></div>
+          <div><div class="k">What we built</div><p>A secure, automated sync between HubSpot and Snowflake using keypair authentication and time-windowed synchronization, keeping the warehouse continuously aligned with the CRM.</p></div>
+          <div><div class="k">The result</div><p>Analysts get current HubSpot data in Snowflake with no manual exports, and the pipeline holds up as data volume grows.</p></div>
+        </div>
+        <div class="tags" style="margin-top:20px"><span>Snowflake</span><span>Python</span><span>Keypair Auth</span><span>AWS</span></div>
+      </div>
+    </div>
+
+    <div id="middleware" class="pf hud" style="grid-template-columns:1fr;padding:0;overflow:hidden">
+      <div class="c2"></div>
+      <div style="padding:30px">
+        <div class="banner" style="height:160px;margin-bottom:22px">
+          <svg viewBox="0 0 700 160" preserveAspectRatio="xMidYMid slice"><rect width="700" height="160" fill="#0a1424"/>
+<circle cx="110" cy="55" r="5" fill="#f5c26b"/><circle cx="110" cy="105" r="5" fill="#f5c26b"/><circle cx="110" cy="80" r="5" fill="#f5c26b"/>
+<rect x="290" y="55" width="120" height="50" rx="6" fill="none" stroke="#eef2fb" stroke-width="1.4"/>
+<text x="350" y="84" text-anchor="middle" fill="#eef2fb" font-family="JetBrains Mono, monospace" font-size="9">MIDDLEWARE</text>
+<line x1="130" y1="55" x2="290" y2="65" stroke="#f5c26b" stroke-width="1.2" opacity="0.5"/>
+<line x1="130" y1="80" x2="290" y2="80" stroke="#f5c26b" stroke-width="1.2" opacity="0.5"/>
+<line x1="130" y1="105" x2="290" y2="95" stroke="#f5c26b" stroke-width="1.2" opacity="0.5"/>
+<line x1="410" y1="80" x2="560" y2="80" stroke="#ff7a59" stroke-width="1.5" opacity="0.6"/>
+<circle cx="590" cy="80" r="26" fill="#0a1424" stroke="#ff7a59" stroke-width="1.5"/>
+<text x="590" y="122" text-anchor="middle" fill="#8b98b8" font-family="JetBrains Mono, monospace" font-size="10">HUBSPOT</text></svg>
+        </div>
+        <div class="pf-num" style="font-size:1.3rem;margin-bottom:6px">CASE 12 &middot; Platform</div>
+        <h3 style="font-size:1.4rem;margin-bottom:18px">Custom middleware for high-volume syncs</h3>
+        <div class="pf-row" style="grid-template-columns:1fr 1fr 1fr">
+          <div><div class="k">The situation</div><p>Native connectors couldn&#8217;t handle the volume or logic needed. Syncs hit HubSpot API rate limits and dropped data during spikes, and the required business logic wasn&#8217;t available out of the box.</p></div>
+          <div><div class="k">What we built</div><p>Resilient middleware that respects HubSpot rate limits with proper queuing and backoff, guarantees delivery with retries and idempotency, and encodes the custom business rules native tools couldn&#8217;t &ndash; fully logged and monitored so failures surface instead of hiding.</p></div>
+          <div><div class="k">The result</div><p>High-volume syncs run reliably with no dropped data, even during traffic spikes.</p></div>
+        </div>
+        <div class="tags" style="margin-top:20px"><span>HubSpot API</span><span>Queues</span><span>Webhooks</span><span>AWS</span></div>
       </div>
     </div>
 
