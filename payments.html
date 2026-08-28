@@ -3,20 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>n8n + HubSpot Workflow Automation, Explained | HubDevPro</title>
-<meta name="description" content="What n8n is, why it matters for complex or high-volume automations, and what I build with it to connect HubSpot to your business.">
-<meta property="og:title" content="n8n + HubSpot &ndash; HubDevPro">
-<meta property="og:description" content="What n8n is, why it matters for complex or high-volume automations, and what I build with it to connect HubSpot to your business.">
+<title>Payment &amp; Billing Integrations for HubSpot | HubDevPro</title>
+<meta name="description" content="Stripe, PayPal and Chargify billing state mirrored into HubSpot in real time &ndash; invoices, upgrades, churn and revenue reporting, explained in plain language.">
+<meta property="og:title" content="Payment Integrations &ndash; HubDevPro">
+<meta property="og:description" content="Stripe, PayPal and Chargify billing state mirrored into HubSpot in real time &ndash; invoices, upgrades, churn and revenue reporting, explained in plain language.">
 <meta property="og:image" content="https://hubdevpro.com/assets/gh-avatar.png">
-<meta property="og:url" content="https://hubdevpro.com/n8n">
+<meta property="og:url" content="https://hubdevpro.com/payments">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="n8n + HubSpot &ndash; HubDevPro">
-<meta name="twitter:description" content="What n8n is, why it matters for complex or high-volume automations, and what I build with it to connect HubSpot to your business.">
+<meta name="twitter:title" content="Payment Integrations &ndash; HubDevPro">
+<meta name="twitter:description" content="Stripe, PayPal and Chargify billing state mirrored into HubSpot in real time &ndash; invoices, upgrades, churn and revenue reporting, explained in plain language.">
 <meta name="twitter:image" content="https://hubdevpro.com/assets/gh-avatar.png">
 <meta name="robots" content="index, follow">
 <meta name="theme-color" content="#05070d">
-<link rel="canonical" href="https://hubdevpro.com/n8n">
+<link rel="canonical" href="https://hubdevpro.com/payments">
 <link rel="icon" type="image/png" href="assets/gh-avatar.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -115,9 +115,9 @@
 <header style="min-height:auto;padding:150px 0 60px">
   <div class="wrap hero-grid">
     <div>
-      <div class="kicker"><span class="ping"></span>Service &middot; Self-Hosted Automation</div>
-      <h1>n8n workflows for the logic <span class="glitch-wrap"><span class="grad" data-text="Zapier">Zapier</span></span> can&#8217;t handle</h1>
-      <p class="tagline">n8n is a self-hosted, open-source workflow tool. It looks like Zapier &ndash; drag-and-drop nodes, visual flows &ndash; but it can hold real logic, run at volume, and drop into custom code when a no-code step isn&#8217;t enough.</p>
+      <div class="kicker"><span class="ping"></span>Service &middot; Payments &amp; Billing</div>
+      <h1>Making sure <span class="glitch-wrap"><span class="grad" data-text="HubSpot">HubSpot</span></span> knows what happened with the money</h1>
+      <p class="tagline">Stripe, PayPal and Chargify all know exactly what a customer paid, upgraded to, or churned from. The question is whether HubSpot knows it too, the moment it happens &ndash; that&#8217;s what I build.</p>
       <div class="term mono" id="term-text-wrap"><span id="term-text"></span><span class="cur"></span></div>
       <div class="cta">
         <a class="btn primary" href="mailto:tamimahmadiub@gmail.com">Email me &rarr;</a>
@@ -126,7 +126,7 @@
     </div>
     <div class="diagram hud">
       <div class="c2"></div>
-      <div class="tag mono">integration_graph.live</div>
+      <div class="tag mono">billing_sync.live</div>
       <canvas id="hero-canvas"></canvas>
     </div>
   </div>
@@ -134,17 +134,18 @@
 
 <section id="what-is">
   <div class="floaters">
-    <span class="fl b" style="top:10%;left:92%;animation-duration:8.5s"><svg width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="10" r="8" fill="none" stroke="#f5c26b" stroke-width="1.5"/></svg></span>
+    <span class="fl b" style="top:12%;left:90%;animation-duration:8s"><svg width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="10" r="8" fill="none" stroke="#f5c26b" stroke-width="1.5"/></svg></span>
   </div>
   <div class="wrap reveal">
     <div class="eyebrow">01 &middot; What is it</div>
-    <h2>n8n, explained in plain English</h2>
+    <h2>Payment integrations, explained in plain English</h2>
     <p style="color:var(--muted);max-width:70ch;font-size:1.06rem">
-      n8n is a workflow automation tool you (or I) run on your own server, instead of renting it from a SaaS company.
-      Visually it&#8217;s similar to Zapier &ndash; you connect nodes into a flow &ndash; but every node can be swapped for a
-      block of real JavaScript when the built-in options aren&#8217;t enough. That makes it the right tool once an
-      automation needs branching logic, loops, high volume, or has to touch sensitive data you don&#8217;t want
-      passing through a third party&#8217;s cloud.
+      Stripe, PayPal and Chargify each run their own billing engine &ndash; invoices, dunning, upgrades, refunds
+      and cancellations all happen there first. Left alone, that data stays trapped in the billing dashboard while
+      sales and support work from HubSpot with no idea what&#8217;s actually happening to an account. Payment
+      integration means every one of those events lands in HubSpot the moment it happens, as a deal, a property
+      update, or a timeline event &ndash; so &quot;is this customer paying, upgrading, or about to churn&quot; is a
+      question anyone on your team can answer without opening a second tab.
     </p>
   </div>
 </section>
@@ -152,27 +153,27 @@
 <section id="why">
   <div class="wrap reveal">
     <div class="eyebrow">02 &middot; Why it matters</div>
-    <h2>Why I reach for n8n</h2>
+    <h2>What breaks without it</h2>
     <div class="cap-grid">
       <div class="cap hud"><div class="c2"></div>
         <div class="cap-idx">01</div>
-        <h3>You own the infrastructure</h3>
-        <p>It runs on servers you control. Your data doesn&#8217;t pass through a third-party automation cloud &ndash; important for anything regulated or sensitive.</p>
+        <h3>Blind renewal conversations</h3>
+        <p>Sales calls a customer about upsell timing without knowing a payment just failed &ndash; an easily avoidable, easily embarrassing mistake.</p>
       </div>
       <div class="cap hud"><div class="c2"></div>
         <div class="cap-idx">02</div>
-        <h3>Real logic, not just steps</h3>
-        <p>Loops, conditional branches, error retries and custom code nodes handle the cases a linear Zap can&#8217;t.</p>
+        <h3>Revenue reporting nobody trusts</h3>
+        <p>Finance's numbers and HubSpot's deal values drift apart the moment someone upgrades, downgrades, or gets a refund outside a manual export.</p>
       </div>
       <div class="cap hud"><div class="c2"></div>
         <div class="cap-idx">03</div>
-        <h3>Volume-friendly pricing</h3>
-        <p>You&#8217;re paying for server capacity, not per task run &ndash; at real volume, that&#8217;s a fraction of the cost.</p>
+        <h3>Churn caught too late</h3>
+        <p>A failed card or a cancellation should trigger outreach the same day &ndash; not surface three weeks later in a spreadsheet.</p>
       </div>
       <div class="cap hud"><div class="c2"></div>
         <div class="cap-idx">04</div>
-        <h3>Still visual, still fast to build</h3>
-        <p>You keep the drag-and-drop speed of a no-code tool for the 80% of the flow that doesn&#8217;t need custom code.</p>
+        <h3>Multi-gateway chaos</h3>
+        <p>Businesses running Stripe <b>and</b> PayPal <b>and</b> Chargify need one consistent view in HubSpot, not three different half-synced pictures.</p>
       </div>
     </div>
   </div>
@@ -181,64 +182,95 @@
 <section id="code">
   <div class="wrap reveal">
     <div class="eyebrow">03 &middot; Under the hood</div>
-    <h2>A custom logic node, for context</h2>
+    <h2>A webhook handler, for context</h2>
     <div class="code-win">
-      <div class="bar2"><i></i><i></i><i></i><span>n8n_function_node.js</span></div>
-      <pre><span class="c">// runs inside an n8n Function node</span>
-<span class="k">const</span> <span class="v">items</span> = <span class="v">$input</span>.<span class="f">all</span>();
+      <div class="bar2"><i></i><i></i><i></i><span>StripeWebhookController.php</span></div>
+      <pre><span class="k">class</span> <span class="f">StripeWebhookController</span>
+{
+    <span class="k">public function</span> <span class="f">handle</span>(<span class="v">Request</span> <span class="v">$req</span>)
+    {
+        <span class="c">// verify the signature before touching anything</span>
+        <span class="v">$event</span> = <span class="v">Webhook</span>::<span class="f">constructEvent</span>(
+            <span class="v">$req</span>-&gt;<span class="f">getContent</span>(), <span class="v">$req</span>-&gt;<span class="f">header</span>(<span class="s">'Stripe-Signature'</span>), <span class="v">config</span>(<span class="s">'stripe.secret'</span>)
+        );
 
-<span class="k">return</span> <span class="v">items</span>
-  .<span class="f">filter</span>(<span class="v">item</span> =&gt; <span class="v">item</span>.<span class="v">json</span>.<span class="v">dealAmount</span> &gt; <span class="v">5000</span>)
-  .<span class="f">map</span>(<span class="v">item</span> =&gt; ({
-    <span class="v">json</span>: {
-      ...<span class="v">item</span>.<span class="v">json</span>,
-      <span class="v">priority</span>: <span class="v">item</span>.<span class="v">json</span>.<span class="v">dealAmount</span> &gt; <span class="v">20000</span> ? <span class="s">'high'</span> : <span class="s">'standard'</span>,
-      <span class="v">routedTo</span>: <span class="f">pickOwner</span>(<span class="v">item</span>.<span class="v">json</span>.<span class="v">region</span>)
+        <span class="c">// idempotency: skip if we've already processed this event id</span>
+        <span class="k">if</span> (<span class="v">ProcessedEvent</span>::<span class="f">exists</span>(<span class="v">$event</span>-&gt;<span class="v">id</span>)) <span class="k">return</span> <span class="f">response</span>(<span class="v">200</span>);
+
+        <span class="k">match</span> (<span class="v">$event</span>-&gt;<span class="v">type</span>) {
+            <span class="s">'invoice.paid'</span> =&gt; <span class="v">Hubspot</span>::<span class="f">markDealPaid</span>(<span class="v">$event</span>),
+            <span class="s">'invoice.payment_failed'</span> =&gt; <span class="v">Hubspot</span>::<span class="f">flagDunning</span>(<span class="v">$event</span>),
+            <span class="s">'customer.subscription.updated'</span> =&gt; <span class="v">Hubspot</span>::<span class="f">syncPlanChange</span>(<span class="v">$event</span>),
+            <span class="k">default</span> =&gt; <span class="k">null</span>,
+        };
+
+        <span class="v">ProcessedEvent</span>::<span class="f">record</span>(<span class="v">$event</span>-&gt;<span class="v">id</span>);
+        <span class="k">return</span> <span class="f">response</span>(<span class="v">200</span>);
     }
-  }));</pre>
+}</pre>
+    </div>
+  </div>
+</section>
+
+<section id="visual">
+  <div class="wrap reveal">
+    <div class="eyebrow">04 &middot; The flow</div>
+    <h2>Where the money data actually goes</h2>
+    <div class="banner hud" style="height:200px;padding:0">
+      <div class="c2"></div>
+      <svg viewBox="0 0 760 180" preserveAspectRatio="xMidYMid slice"><rect width="760" height="180" fill="#0a1424"/>
+<circle cx="60" cy="45" r="15" fill="#0a1424" stroke="#f5c26b" stroke-width="1.4"/>
+<text x="60" y="49" text-anchor="middle" fill="#f5c26b" font-family="JetBrains Mono, monospace" font-size="12">$</text>
+<text x="60" y="24" text-anchor="middle" fill="#8b98b8" font-family="JetBrains Mono, monospace" font-size="9">STRIPE</text>
+<circle cx="60" cy="90" r="15" fill="#0a1424" stroke="#f5c26b" stroke-width="1.4"/>
+<text x="60" y="94" text-anchor="middle" fill="#f5c26b" font-family="JetBrains Mono, monospace" font-size="12">P</text>
+<text x="60" y="112" text-anchor="middle" fill="#8b98b8" font-family="JetBrains Mono, monospace" font-size="9">PAYPAL</text>
+<circle cx="60" cy="135" r="15" fill="#0a1424" stroke="#f5c26b" stroke-width="1.4"/>
+<text x="60" y="139" text-anchor="middle" fill="#f5c26b" font-family="JetBrains Mono, monospace" font-size="12">C</text>
+<text x="60" y="158" text-anchor="middle" fill="#8b98b8" font-family="JetBrains Mono, monospace" font-size="9">CHARGIFY</text>
+<line x1="75" y1="45" x2="230" y2="90" stroke="#f5c26b" stroke-width="1.3" opacity="0.5"/>
+<line x1="75" y1="90" x2="230" y2="90" stroke="#f5c26b" stroke-width="1.3" opacity="0.5"/>
+<line x1="75" y1="135" x2="230" y2="90" stroke="#f5c26b" stroke-width="1.3" opacity="0.5"/>
+<rect x="230" y="60" width="120" height="60" rx="6" fill="none" stroke="#eef2fb" stroke-width="1.4"/>
+<text x="290" y="86" text-anchor="middle" fill="#eef2fb" font-family="JetBrains Mono, monospace" font-size="9">WEBHOOK</text>
+<text x="290" y="99" text-anchor="middle" fill="#eef2fb" font-family="JetBrains Mono, monospace" font-size="9">HANDLER</text>
+<text x="290" y="112" text-anchor="middle" fill="#6b7690" font-family="JetBrains Mono, monospace" font-size="7">signature + idempotency</text>
+<line x1="350" y1="90" x2="440" y2="90" stroke="#ff7a59" stroke-width="1.5" opacity="0.6"/>
+<rect x="440" y="55" width="130" height="70" rx="6" fill="none" stroke="#ff7a59" stroke-width="1.5"/>
+<text x="505" y="80" text-anchor="middle" fill="#eef2fb" font-family="JetBrains Mono, monospace" font-size="9">HUBSPOT DEAL</text>
+<text x="505" y="94" text-anchor="middle" fill="#6b7690" font-family="JetBrains Mono, monospace" font-size="7">status, MRR, dunning</text>
+<text x="505" y="107" text-anchor="middle" fill="#6b7690" font-family="JetBrains Mono, monospace" font-size="7">flag updated live</text>
+<line x1="570" y1="90" x2="660" y2="90" stroke="#ff9d7a" stroke-width="1.4" opacity="0.6"/>
+<circle cx="690" cy="90" r="26" fill="#0a1424" stroke="#ff9d7a" stroke-width="1.5"/>
+<path d="M680 90a10 10 0 1 1 20 0 10 10 0 0 1 -20 0" fill="none" stroke="#ff9d7a" stroke-width="1.3"/>
+<path d="M685 90l3 3 6-7" fill="none" stroke="#ff9d7a" stroke-width="1.3"/>
+<text x="690" y="132" text-anchor="middle" fill="#8b98b8" font-family="JetBrains Mono, monospace" font-size="9">SALES SEES IT</text></svg>
     </div>
   </div>
 </section>
 
 <section id="examples">
   <div class="wrap reveal">
-    <div class="eyebrow">04 &middot; Examples</div>
-    <h2>What I build with n8n</h2>
+    <div class="eyebrow">05 &middot; Examples</div>
+    <h2>What I build with payment integrations</h2>
     <div class="pf-grid">
       <div class="pf-mini hud"><div class="c2"></div>
-        <div class="thumb"><svg class="icon" viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
-        <div class="tag">Approvals</div>
-        <h4>Multi-step approval workflows</h4>
-        <p>Deal discounts above a threshold route through manager approval before HubSpot lets the deal move forward.</p>
+        <div class="thumb"><svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v10M9 9.5h4a2 2 0 1 1 0 4H9M9 14.5h5"/></svg></div>
+        <div class="tag">Stripe</div>
+        <h4>Recurring billing bridges</h4>
+        <p>Invoices, upgrades, downgrades and churn mirrored into HubSpot deals and custom objects in real time.</p>
       </div>
       <div class="pf-mini hud"><div class="c2"></div>
-        <div class="thumb"><svg class="icon" viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-9-9c2.5 0 4.7 1 6.3 2.7"/><path d="M21 3v6h-6"/></svg></div>
-        <div class="tag">Reconciliation</div>
-        <h4>Nightly data reconciliation</h4>
-        <p>Scheduled runs compare HubSpot against a source system and flag or auto-correct drift before it compounds.</p>
+        <div class="thumb"><svg class="icon" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="12" rx="2"/><path d="M3 11h18"/></svg></div>
+        <div class="tag">Stripe Connect</div>
+        <h4>Multi-tiered marketplace payments</h4>
+        <p>Platform and sub-merchant payment flows kept straight in HubSpot, including international transactions.</p>
       </div>
       <div class="pf-mini hud"><div class="c2"></div>
-        <div class="thumb"><svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><circle cx="19" cy="6" r="2.4"/><circle cx="19" cy="18" r="2.4"/><circle cx="5" cy="12" r="2.4"/></svg></div>
-        <div class="tag">Orchestration</div>
-        <h4>Central webhook hub</h4>
-        <p>One n8n workflow receives webhooks from five systems and routes each to the right HubSpot action &ndash; a single place to debug, instead of five.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="compare">
-  <div class="wrap reveal">
-    <div class="eyebrow">05 &middot; Picking the right tool</div>
-    <h2>Zapier vs. n8n vs. Laravel</h2>
-    <div class="grid2">
-      <div class="card">
-        <h3>Start with Zapier if&hellip;</h3>
-        <p>It&#8217;s simple, low-volume, and you want it live today. See the <a href="zapier" style="color:var(--gold)">Zapier page</a>.</p>
-      </div>
-      <div class="card">
-        <h3>Move to a custom backend if&hellip;</h3>
-        <p>The logic needs to own its own database, serve an API, or handle payments directly. See the <a href="laravel" style="color:var(--gold)">Laravel page</a>.</p>
+        <div class="thumb"><svg class="icon" viewBox="0 0 24 24"><rect x="2" y="7" width="8" height="13" rx="1"/><rect x="14" y="4" width="8" height="16" rx="1"/></svg></div>
+        <div class="tag">Multi-Gateway</div>
+        <h4>Multi-portal billing sync</h4>
+        <p>Subscription lifecycle kept consistent across several HubSpot portals sharing one billing backend.</p>
       </div>
     </div>
   </div>
@@ -247,15 +279,25 @@
 <section id="related">
   <div class="wrap reveal">
     <div class="eyebrow">06 &middot; See it in action</div>
-    <h2>Related case study</h2>
-    <a href="case-studies#booking" class="pf hud" style="text-decoration:none;color:inherit">
-      <div class="c2"></div>
-      <div class="pf-num">03</div>
-      <div>
-        <h3>Booking-to-revenue pipeline</h3>
-        <p style="color:var(--muted)">How a multi-step n8n workflow keeps booking data, no-show handling and renewal timing all in sync. Read the full story &rarr;</p>
-      </div>
-    </a>
+    <h2>Related case studies</h2>
+    <div class="pf-list">
+      <a href="case-studies#billing" class="pf hud" style="text-decoration:none;color:inherit">
+        <div class="c2"></div>
+        <div class="pf-num">01</div>
+        <div>
+          <h3>Recurring billing bridge</h3>
+          <p style="color:var(--muted)">Stripe and Chargify state mirrored into HubSpot deals, live. Read the full story &rarr;</p>
+        </div>
+      </a>
+      <a href="case-studies#stripe-automation" class="pf hud" style="text-decoration:none;color:inherit">
+        <div class="c2"></div>
+        <div class="pf-num">08</div>
+        <div>
+          <h3>Stripe to HubSpot financial automation</h3>
+          <p style="color:var(--muted)">Multi-tiered, international billing events pushed straight into deals. Read the full story &rarr;</p>
+        </div>
+      </a>
+    </div>
   </div>
 </section>
 
@@ -291,8 +333,8 @@
 
 <script src="assets/site.js"></script>
 <script>
-HDP.termType('term-text', ['> connecting n8n ... OK', '> self-hosted workflow ... ONLINE']);
-HDP.heroDiagram('hero-canvas', 'n8n', ['HubSpot','Webhooks','Database','Auth0','Stripe','Cron']);
+HDP.termType('term-text', ['> invoice.paid received ... OK', '> deal updated in HubSpot ... OK']);
+HDP.heroDiagram('hero-canvas', 'HubSpot', ['Stripe','PayPal','Chargify','Deals','Dunning','Reporting']);
 </script>
 </body>
 </html>
